@@ -1,7 +1,7 @@
-// import fetch from 'isomorphic-fetch';
+import fetch from 'isomorphic-fetch';
 import * as types from '../constants/actionTypes';
 
-// const url = "http://localhost:8080";
+const url = "http://localhost:8080";
 
 export function loading() {
   return {
@@ -67,29 +67,29 @@ export function submitTask(newTask) {
   // }
 }
 
-export function getTasks() {
+export function getTasks(createdOrEnd = "all", value = "1") {
   console.log("call api here");
-  // return function(dispatch) {
-  //   dispatch(loading());
-  //   fetch(url.concat("task"), {
-  //     method: "GET",
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     }
-  //   })
-  //   .then(response => {
-  //     dispatch(loading());
-  //     if(response.status !== 200) throw response;
-  //     return response.json()
-  //   })
-  //   .then(response => {
-  //     dispatch({
-  //       type: types.UPDATE_TASKS,
-  //       tasks: response.tasks
-  //     })
-  //   });
-  // }
+  return function(dispatch) {
+    dispatch(loading());
+    fetch(url.concat(`task/${createdOrEnd}/${value}`), {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      dispatch(loading());
+      if(response.status !== 200) throw response;
+      return response.json()
+    })
+    .then(response => {
+      dispatch({
+        type: types.UPDATE_TASKS,
+        tasks: response.tasks
+      })
+    });
+  }
 }
 
 export function filterByDate(date) {

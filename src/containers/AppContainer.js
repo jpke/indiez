@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {badResponse, deleteTask, createTask} from '../actions/taskActions';
+import {getTasks, badResponse, deleteTask, createTask} from '../actions/taskActions';
 import AppView from '../components/AppView';
 
 // This is a class-based component because the current
@@ -13,6 +13,7 @@ class AppContainer extends Component {
 
   constructor(props) {
     super(props);
+    this.props.getTasks("all", "1");
   }
 
   componentWillReceiveProps(newProps) {
@@ -45,6 +46,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    getTasks: (createdOrEnd, value) => dispatch(getTasks(createdOrEnd, value)),
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID) => dispatch(deleteTask(taskID)),
     createTask: () => dispatch(createTask())

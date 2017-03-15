@@ -11,22 +11,23 @@ import * as types from '../constants/actionTypes';
      createdBy: "your name"
    },
    tasks: [
-     {
-       name: "task one",
-       end: new Date(Date.now() + (1000*60*60*24)),
-       description: "first task to complete",
-       created: Date.now(),
-       id: 1,
-       createdBy: "JP"
-     },
-     {
-       name: "task two",
-       end: new Date(Date.now() + (1000*60*60*24*2)),
-       description: "second task to complete",
-       created: Date.now(),
-       id: 2,
-       createdBy: "JP"
-     }
+     {}
+    //  {
+    //    name: "task one",
+    //    end: new Date(Date.now() + (1000*60*60*24)),
+    //    description: "first task to complete",
+    //    created: Date.now(),
+    //    id: 1,
+    //    createdBy: "JP"
+    //  },
+    //  {
+    //    name: "task two",
+    //    end: new Date(Date.now() + (1000*60*60*24*2)),
+    //    description: "second task to complete",
+    //    created: Date.now(),
+    //    id: 2,
+    //    createdBy: "JP"
+    //  }
    ]
  }
 
