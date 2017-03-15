@@ -49,6 +49,7 @@ function mapDispatchToProps(dispatch) {
     getTasks: (createdOrEnd, value) => dispatch(getTasks(createdOrEnd, value)),
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID) => dispatch(deleteTask(taskID)),
+    updateNewTask: (key, value) => dispatch(updateNewTask(key, value)),
     createTask: () => dispatch(createTask())
   }
 }

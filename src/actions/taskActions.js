@@ -31,47 +31,61 @@ export function updateNewTask(key, value) {
 }
 
 export function deleteTask(taskID) {
-  return {
-    type: types.DELETE_TASK,
-    taskID
-  };
+  return function(dispatch) {
+    dispatch(loading());
+    fetch(url.concat("/task/", taskID), {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      dispatch(loading());
+      if(response.status !== 200) throw response;
+      dispatch({
+        type: types.DELETE_TASK,
+        taskID
+      })
+    })
+    .catch((err) => {
+      dispatch(badResponse(err));
+    })
+  }
 }
 
 export function submitTask(newTask) {
-  console.log("call api here ", newTask);
-  return {
-    type: types.ADD_TASK,
-    task: newTask
-  };
-  // return function(dispatch) {
-  //   dispatch(loading());
-  //   fetch(url.concat("task"), {
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //     body: JSON.stringify(newTask)
-  //   })
-  //   .then(response => {
-  //     dispatch(loading());
-  //     if(response.status !== 201) throw response;
-  //     return response.json()
-  //   })
-  //   .then(response => {
-  //     dispatch({
-  //       type: types.ADD_TASK,
-  //       task: response.task
-  //     })
-  //   })
-  // }
+  return function(dispatch) {
+    dispatch(loading());
+    fetch(url.concat("/task"), {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(newTask)
+    })
+    .then(response => {
+      dispatch(loading());
+      if(response.status !== 201) throw response;
+      return response.json()
+    })
+    .then(response => {
+      dispatch({
+        type: types.ADD_TASK,
+        task: response
+      })
+    })
+    .catch((err) => {
+      dispatch(badResponse(err));
+    })
+  }
 }
 
 export function getTasks(createdOrEnd = "all", value = "1") {
-  console.log("call api here");
   return function(dispatch) {
     dispatch(loading());
-    fetch(url.concat(`task/${createdOrEnd}/${value}`), {
+    fetch(url.concat(`/task/${createdOrEnd}/${value}`), {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -86,9 +100,12 @@ export function getTasks(createdOrEnd = "all", value = "1") {
     .then(response => {
       dispatch({
         type: types.UPDATE_TASKS,
-        tasks: response.tasks
+        tasks: response
       })
-    });
+    })
+    .catch((err) => {
+      dispatch(badResponse(err));
+    })
   }
 }
 

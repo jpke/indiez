@@ -7,7 +7,7 @@ var taskSchema = new mongoose.Schema({
   },
   end: {
     type: Date,
-    default: Date(Date.now + (1000*60*60*24))
+    default: Date.now() + (1000*60*60*24)
   },
   description: {
     type: String,
@@ -15,7 +15,7 @@ var taskSchema = new mongoose.Schema({
   },
   created: {
     type: Date,
-    default: Date.now
+    required: true
   },
   createdBy: {
     type: String,

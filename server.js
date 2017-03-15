@@ -21,6 +21,7 @@ app.post("/task", jsonParser, function(req, res) {
   newTask.name = req.body.name;
   newTask.end = req.body.end;
   newTask.description = req.body.description;
+  newTask.created = Date.now();
   newTask.createdBy = req.body.createdBy;
   newTask.save()
   .then(function(newTaskCreated) {

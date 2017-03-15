@@ -12,9 +12,9 @@ const AppView = (props) => (
       <div>
         <p>Filter component will go here</p>
         <button onClick={() => {props.createTask()}}>Create Task</button>
-        {props.createNewTask && <CreateTaskContainer />}
+        {props.createNewTask && <CreateTaskContainer update={props.updateNewTask}/>}
       </div>
-      {props.tasks.map((task) => {
+      {props.tasks && props.tasks.map((task) => {
         return <TaskView task={task} deleteTask={props.deleteTask}/>
       })
       }

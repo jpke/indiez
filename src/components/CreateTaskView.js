@@ -8,10 +8,10 @@ const CreateTaskView = (props) => (
         e.preventDefault();
         props.createTask()
         props.cancelCreateTask()}}>
-      <input type="text" name="name" value={props.newTask.name} onChange={(e) => {console.log(e)}} />
-      <input type="date" name="endDate" value={props.newTask.endDate} onChange={(e) => {console.log(e)}} />
-      <textarea type="text" name="description" value={props.newTask.description} onChange={(e) => {console.log(e)}} />
-      <input type="text" name="createdBy" value={props.newTask.createdBy} onChange={(e) => {console.log(e)}} />
+      <input type="text" name="name" defaultValue={props.newTask.name} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
+      <input type="date" name="endDate" defaultValue={props.newTask.endDate} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
+      <textarea type="text" name="description" defaultValue={props.newTask.description} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
+      <input type="text" name="createdBy" defaultValue={props.newTask.createdBy} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
       <button type="submit">Create</button>
     </form>
     <button onClick={() => {props.cancelCreateTask()}}>Cancel</button>

@@ -55,7 +55,23 @@ import * as types from '../constants/actionTypes';
      case types.UPDATE_NEW_TASK:
       //logic for new task
       console.log("new task key: ", action.key, " and value: ", action.value);
-      newTask = state.newTask
+      newTask = {...state.newTask};
+      switch(action.key) {
+        case "name":
+          newTask.name = action.value;
+          break;
+        case "endDate":
+          newTask.end = new Date(new Date(action.value).getTime() + new Date(action.value).getTimezoneOffset() * 60000);
+          break;
+        case "description":
+          newTask.description = action.value;
+          break;
+        case "createdBy":
+          newTask.createdBy = action.value;
+          break;
+        default:
+          newTask;
+      }
       return {
         ...state,
         newTask: newTask
@@ -63,7 +79,7 @@ import * as types from '../constants/actionTypes';
      case types.DELETE_TASK:
       console.log("delete task: ", action.taskID);
       tasks = JSON.parse(JSON.stringify(state.tasks));
-      tasks = tasks.filter((task) => {return task.id !== action.taskID});
+      tasks = tasks.filter((task) => {return task._id !== action.taskID});
       return {
         ...state,
         tasks: tasks
@@ -76,12 +92,13 @@ import * as types from '../constants/actionTypes';
 
       return {
         ...state,
-        tasks: tasks
+        tasks: tasks,
+        newTask: initialState.newTask
       }
      case types.UPDATE_TASKS:
       return {
         ...state,
-        tasks: action.tasks
+        tasks: action.tasks,
       };
      case types.FILTER_BY_DATE:
       tasks = JSON.parse(JSON.stringify(state.tasks));
