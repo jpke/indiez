@@ -1,6 +1,8 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
+//use global promise library
+mongoose.Promise = global.Promise;
 var Task = require('./Task')
 var cors = require('cors');
 
@@ -31,10 +33,56 @@ app.post("/task", jsonParser, function(req, res) {
 });
 
 //get all tasks
-app.get("/task", function(req, res) {
-  Task.find({}).exec()
-  .then(function(tasks) {
-    return res.status(200).json(tasks);
+app.get("/task/:createdOrEnd/:date", function(req, res) {
+  if(req.params.createdOrEnd === "all") {
+    Task.find({}).exec()
+    .then(function(tasks) {
+      return res.status(200).json(tasks);
+    })
+    .catch(function(err) {
+      console.log("error: ", err);
+      return res.status(500).json('Internal Server Error');
+    });
+  }
+  else if(req.params.createdOrEnd === "created") {
+    Task.find({created: {$gt: req.params.date}}).exec()
+    .then(function(tasks) {
+      return res.status(200).json(tasks);
+    })
+    .catch(function(err) {
+      console.log("error: ", err);
+      return res.status(500).json('Internal Server Error');
+    });
+  }
+  else if(req.params.createdOrEnd === "end"){
+    Task.find({end: {$lt: req.params.date}}).exec()
+    .then(function(tasks) {
+      return res.status(200).json(tasks);
+    })
+    .catch(function(err) {
+      console.log("error: ", err);
+      return res.status(500).json('Internal Server Error');
+    });
+  }
+  else {
+    return res.status(400).json('Invalid created or end specification');
+  }
+});
+
+//update task
+app.put("/task", jsonParser, function(req, res) {
+  Task.findOneAndUpdate({_id: req.body._id},
+  {$set: {
+    name: req.body.name,
+    end: req.body.end,
+    description: req.body.description,
+    createdBy: req.body.createdBy
+    }
+  },
+  {new: true})
+  .exec()
+  .then(function(updatedTask) {
+    return res.status(200).json(updatedTask);
   })
   .catch(function(err) {
     console.log("error: ", err);
@@ -42,10 +90,16 @@ app.get("/task", function(req, res) {
   });
 });
 
-//update task
-app.put("/task", function(req, res) {
-  Task.findOneAndUpdate({_id: req._id},
-  {})
+//delete task
+app.delete("/task/:taskID", function(req, res) {
+  Task.remove({_id: req.params.taskID}).exec()
+  .then(function() {
+    return res.status(200).json('Task Deleted');
+  })
+  .catch(function(err) {
+    console.log("error: ", err);
+    return res.status(500).json('Internal Server Error');
+  })
 })
 
 
