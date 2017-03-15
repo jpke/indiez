@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateNewTask, submitTask} from '../actions/taskActions';
+import {updateNewTask, submitTask, createTask} from '../actions/taskActions';
 import CreateTaskView from '../components/CreateTaskView';
 
 //Container for CreateTaskView
@@ -14,6 +14,8 @@ export const CreateTaskContainer = (props) => {
       <CreateTaskView
         updateNewTask={props.updateNewTask}
         createTask={createTask}
+        newTask={props.newTask}
+        cancelCreateTask={props.cancelCreateTask}
 
       />
   );
@@ -23,14 +25,15 @@ export const CreateTaskContainer = (props) => {
 
 function mapStateToProps(state) {
   return {
-      newTask: state.rootReducer.newTask
+      newTask: state.newTask
     }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     updateNewTask: (key, value) => dispatch(updateNewTask(key, value)),
-    submitTask: (newTask) => dispatch(submitTask(newTask))
+    submitTask: (newTask) => dispatch(submitTask(newTask)),
+    cancelCreateTask: () => dispatch(createTask())
   };
 }
 

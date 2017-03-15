@@ -1,6 +1,7 @@
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
+import * as types from '../constants/actionTypes';
 
-const url = "http://localhost:8080";
+// const url = "http://localhost:8080";
 
 export function loading() {
   return {
@@ -8,16 +9,16 @@ export function loading() {
   };
 }
 
+export function badResponse(errorMessage) {
+  return {
+    type: types.UPDATE_ERROR,
+    message: errorMessage
+  }
+}
+
 export function createTask() {
   return {
     type: types.CREATE_NEW_TASK
-  };
-}
-
-export function deleteTask(taskID) {
-  return {
-    type: types.DELETE_TASK,
-    taskID
   };
 }
 
@@ -29,8 +30,19 @@ export function updateNewTask(key, value) {
   };
 }
 
+export function deleteTask(taskID) {
+  return {
+    type: types.DELETE_TASK,
+    taskID
+  };
+}
+
 export function submitTask(newTask) {
-  console.log("call api here");
+  console.log("call api here ", newTask);
+  return {
+    type: types.ADD_TASK,
+    task: newTask
+  };
   // return function(dispatch) {
   //   dispatch(loading());
   //   fetch(url.concat("task"), {
@@ -78,4 +90,11 @@ export function getTasks() {
   //     })
   //   });
   // }
+}
+
+export function filterByDate(date) {
+  return {
+    type: types.FILTER_BY_DATE,
+    date
+  }
 }

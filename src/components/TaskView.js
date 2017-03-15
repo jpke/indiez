@@ -7,7 +7,7 @@ const TaskView = ({task, deleteTask}) => (
     <ul>
       <li>{"End Date: " + task.end}</li>
       <li>{"Description: " + task.description}</li>
-      <li>{"Created: " + task.created}</li>
+      <li>{"Created: " + Date(task.created)}</li>
       <li>{"Created By: " + task.createdBy}</li>
     </ul>
     <button onClick={() => {deleteTask(task.id)}}>Delete</button>

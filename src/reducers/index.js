@@ -1,6 +1,4 @@
-// Set up your root reducer here...
- // import { combineReducers } from 'redux';
- // export default combineReducers;
+import * as types from '../constants/actionTypes';
 
  const initialState = {
    loading: false,
@@ -34,7 +32,7 @@
 
  export default function rootReducer(state = initialState, action) {
    //declare vars
-   let newTask;
+   let newTask, tasks;
 
    switch(action.type) {
 
@@ -43,6 +41,11 @@
         ...state,
         loading: !state.loading
       };
+     case types.UPDATE_ERROR:
+      return {
+        ...state,
+        errorMessage: action.message
+      }
      case types.CREATE_NEW_TASK:
       return {
         ...state,
@@ -50,34 +53,43 @@
       };
      case types.UPDATE_NEW_TASK:
       //logic for new task
-      console.log("new task key: ", key, " and value: ", value);
+      console.log("new task key: ", action.key, " and value: ", action.value);
       newTask = state.newTask
       return {
         ...state,
         newTask: newTask
       }
      case types.DELETE_TASK:
-      console.log("delete task: ", action.taskID)
+      console.log("delete task: ", action.taskID);
+      tasks = JSON.parse(JSON.stringify(state.tasks));
+      tasks = tasks.filter((task) => {return task.id !== action.taskID});
       return {
         ...state,
-        tasks: state.tasks
+        tasks: tasks
       };
+     case types.ADD_TASK:
+      newTask = JSON.parse(JSON.stringify(action.task));
+      newTask.id = state.tasks.length + 1;
+      tasks = JSON.parse(JSON.stringify(state.tasks));
+      tasks = tasks.concat(newTask)
+
+      return {
+        ...state,
+        tasks: tasks
+      }
      case types.UPDATE_TASKS:
       return {
         ...state,
         tasks: action.tasks
       };
      case types.FILTER_BY_DATE:
+      tasks = JSON.parse(JSON.stringify(state.tasks));
+
       return {
         ...state,
-        tasks: action.tasks
+        tasks: tasks
       };
-      case types.UPDATE_ERROR:
-        return {
-          ...state,
-          errorMessage: action.message
-        }
-     default:
-      return state;
+      default:
+       return state;
    }
  }

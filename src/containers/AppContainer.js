@@ -1,6 +1,6 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {clearErrorMessage, deleteTask, createTask} from '../actions/taskActions';
+import {badResponse, deleteTask, createTask} from '../actions/taskActions';
 import AppView from '../components/AppView';
 
 // This is a class-based component because the current
@@ -9,9 +9,7 @@ import AppView from '../components/AppView';
 
 //container for AppView, recieves child components from react router
 class AppContainer extends Component {
-  static propTypes = {
-    children: PropTypes.element
-  }
+
 
   constructor(props) {
     super(props);
@@ -38,10 +36,10 @@ class AppContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    tasks: state.rootReducer.tasks,
-    createNewTask: state.rootReducer.createNewTask,
-    errorMessage: state.authReducer.errorMessage,
-    loading: state.authReducer.loading
+    tasks: state.tasks,
+    createNewTask: state.createNewTask,
+    errorMessage: state.errorMessage,
+    loading: state.loading
   }
 }
 
