@@ -25,12 +25,9 @@ button:hover {
 #main {
   margin: 15px auto;
 
-  h1, p {
+  #header {
     text-align: center;
-    width: 271px;
-  }
-
-  #createOrEditButton {
+    width: 260px;
     margin-left: 15px;
   }
 }
@@ -106,5 +103,16 @@ ul {
   button {
     width: 80px;
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 593px) {
+  #main #header {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+  }
+  .taskSpacer {
+    margin: 0 auto;
   }
 }

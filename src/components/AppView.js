@@ -7,10 +7,12 @@ import CreateTaskContainer from '../containers/CreateTaskContainer'
 //calls child components passed in as props
 const AppView = (props) => (
   <div id="main">
-    <h1>Task Manager</h1>
+    <section id="header">
+      <h1>Task Manager</h1>
       <p>Filter component will go here</p>
       <button id="createOrEditButton" onClick={() => {props.createTask()}}>Create Task</button>
-      {props.createNewTask && <CreateTaskContainer/>}
+    </section>
+    {props.createNewTask && <CreateTaskContainer/>}
     <section id="tasks">
       {props.tasks && props.tasks.map((task, index) => {
         return <TaskView task={task}
