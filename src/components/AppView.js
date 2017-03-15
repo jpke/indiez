@@ -6,22 +6,21 @@ import CreateTaskContainer from '../containers/CreateTaskContainer'
 //returns background app view nav and header
 //calls child components passed in as props
 const AppView = (props) => (
-  <div>
-    <div className="header">
-      <h1>Task Manager</h1>
-      <div>
-        <p>Filter component will go here</p>
-        <button onClick={() => {props.createTask()}}>Create Task</button>
-        {props.createNewTask && <CreateTaskContainer/>}
-      </div>
-      {props.tasks && props.tasks.map((task) => {
+  <div id="main">
+    <h1>Task Manager</h1>
+      <p>Filter component will go here</p>
+      <button id="createOrEditButton" onClick={() => {props.createTask()}}>Create Task</button>
+      {props.createNewTask && <CreateTaskContainer/>}
+    <section id="tasks">
+      {props.tasks && props.tasks.map((task, index) => {
         return <TaskView task={task}
                 deleteTask={props.deleteTask}
                 createTask={props.createTask}
+                key={index}
                 />
       })
       }
-    </div>
+    </section>
   </div>
 );
 

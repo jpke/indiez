@@ -1,3 +1,110 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+  background-color: #6799FF;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  width: 130px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgb(255,103,153);
+  color: #fff;
+  font-size: 15px;
+  border: none;
+}
+
+button:hover {
+  background-color: #993D5B;
+}
+
+#main {
+  margin: 15px auto;
+
+  h1, p {
+    text-align: center;
+    width: 271px;
+  }
+
+  #createOrEditButton {
+    margin-left: 15px;
+  }
+}
+
+#newTaskForm {
+  position: absolute;
+  left: 50%;
+  margin-left: -149px;
+  background-color: #6799FF;
+  padding: 16px;
+  border: 3px solid #993D5B;
+  border-radius: 10px;
+  box-shadow: 0.5px 1.5px 10.5px 2.5px rgba(153,61,91,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+
+    input, textarea {
+      margin: 3px 0;
+      height: 25px;
+      font-size: 15px;
+      padding: 3px;
+      border-radius: 3px;
+    }
+
+    .taskButtons {
+      margin-top: 3px;
+    }
+  }
+}
+
+#tasks {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+
+  .taskSpacer {
+    max-width: 320px;
+    min-width: 280px;
+    // margin: 0 auto;
+  }
+}
+
+#tasks:after {
+  content: "";
+  flex: auto;
+}
+
+.taskContainer {
+  width: 260px;
+  margin: 15px;
+  background-color: rgba(255,205,103,1);
+  padding: 12px;
+  border-radius: 10px;
+  color: #424A55;
+}
+
+ul {
+  list-style: none;
+  line-height: 1.5;
+  padding: 0;
+}
+
+.taskButtons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+
+  button {
+    width: 80px;
+    margin: 0;
+  }
+}
