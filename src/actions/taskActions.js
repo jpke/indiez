@@ -16,17 +16,19 @@ export function badResponse(errorMessage) {
   }
 }
 
-export function createTask() {
+export function createTask(ID = "new") {
   return {
-    type: types.CREATE_NEW_TASK
+    type: types.CREATE_NEW_TASK,
+    ID
   };
 }
 
-export function updateNewTask(key, value) {
+export function updateNewTask(key, value, ID) {
   return {
     type: types.UPDATE_NEW_TASK,
     key,
-    value
+    value,
+    ID
   };
 }
 
@@ -49,7 +51,7 @@ export function deleteTask(taskID) {
       })
     })
     .catch((err) => {
-      dispatch(badResponse(err));
+      dispatch(badResponse("Delete task error"));
     })
   }
 }
@@ -57,28 +59,55 @@ export function deleteTask(taskID) {
 export function submitTask(newTask) {
   return function(dispatch) {
     dispatch(loading());
-    fetch(url.concat("/task"), {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(newTask)
-    })
-    .then(response => {
-      dispatch(loading());
-      if(response.status !== 201) throw response;
-      return response.json()
-    })
-    .then(response => {
-      dispatch({
-        type: types.ADD_TASK,
-        task: response
+    if(!newTask._id){
+      fetch(url.concat("/task"), {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(newTask)
       })
-    })
-    .catch((err) => {
-      dispatch(badResponse(err));
-    })
+      .then(response => {
+        dispatch(loading());
+        if(response.status !== 201) throw response;
+        return response.json()
+      })
+      .then(response => {
+        dispatch({
+          type: types.ADD_TASK,
+          task: response
+        })
+      })
+      .catch((err) => {
+        dispatch(badResponse("Create new task "));
+      })
+    }
+    else {
+      fetch(url.concat("/task"), {
+        method: "PUT",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(newTask)
+      })
+      .then(response => {
+        dispatch(loading());
+        if(response.status !== 200) {throw response;}
+        return response.json()
+      })
+      .then(response => {
+        dispatch({
+          type: types.UPDATE_TASK,
+          task: response
+        })
+      })
+      .catch((err) => {
+        console.log("error: ", err);
+        dispatch(badResponse("Task update "));
+      })
+    }
   }
 }
 
@@ -104,10 +133,12 @@ export function getTasks(createdOrEnd = "all", value = "1") {
       })
     })
     .catch((err) => {
-      dispatch(badResponse(err));
+      dispatch(badResponse("Problem fetching tasks"));
     })
   }
 }
+
+// export function editTask(taskID)
 
 export function filterByDate(date) {
   return {

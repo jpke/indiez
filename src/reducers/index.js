@@ -33,7 +33,7 @@ import * as types from '../constants/actionTypes';
 
  export default function rootReducer(state = initialState, action) {
    //declare vars
-   let newTask, tasks;
+   let newTask, tasks, index;
 
    switch(action.type) {
 
@@ -48,13 +48,16 @@ import * as types from '../constants/actionTypes';
         errorMessage: action.message
       }
      case types.CREATE_NEW_TASK:
+      if(action.ID != "new") {
+        console.log(...state.tasks.filter((task) => {return task._id === action.ID}))
+        newTask = {...state.tasks.filter((task) => {return task._id === action.ID})}[0];
+      } else newTask = initialState.newTask
       return {
         ...state,
-        createNewTask: !state.createNewTask
+        createNewTask: !state.createNewTask,
+        newTask: newTask
       };
      case types.UPDATE_NEW_TASK:
-      //logic for new task
-      console.log("new task key: ", action.key, " and value: ", action.value);
       newTask = {...state.newTask};
       switch(action.key) {
         case "name":
@@ -77,7 +80,6 @@ import * as types from '../constants/actionTypes';
         newTask: newTask
       }
      case types.DELETE_TASK:
-      console.log("delete task: ", action.taskID);
       tasks = JSON.parse(JSON.stringify(state.tasks));
       tasks = tasks.filter((task) => {return task._id !== action.taskID});
       return {
@@ -95,6 +97,14 @@ import * as types from '../constants/actionTypes';
         tasks: tasks,
         newTask: initialState.newTask
       }
+     case types.UPDATE_TASK:
+      index = state.tasks.findIndex((task) => task._id === action.task._id);
+      tasks = JSON.parse(JSON.stringify(state.tasks));
+      tasks = tasks.slice(0,index).concat(action.task, tasks.slice(index + 1, tasks.length));
+      return {
+        ...state,
+        tasks: tasks
+      };
      case types.UPDATE_TASKS:
       return {
         ...state,

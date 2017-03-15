@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getTasks, badResponse, deleteTask, createTask} from '../actions/taskActions';
+import {getTasks, badResponse, deleteTask, createTask, editTask} from '../actions/taskActions';
 import AppView from '../components/AppView';
 
 // This is a class-based component because the current
@@ -50,7 +50,7 @@ function mapDispatchToProps(dispatch) {
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID) => dispatch(deleteTask(taskID)),
     updateNewTask: (key, value) => dispatch(updateNewTask(key, value)),
-    createTask: () => dispatch(createTask())
+    createTask: (ID) => dispatch(createTask(ID))
   }
 }
 
