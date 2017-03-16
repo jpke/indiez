@@ -121,8 +121,11 @@ export function submitTask(newTask) {
 
 export function getTasks(filterByType = "all", filterBy = "1") {
   return function(dispatch) {
-    if(filterBy != "1") filterBy = new Date(filterBy).getTime();
-    console.log("filterBy: ", filterBy);
+    if(filterBy != "1") {
+      filterBy = filterBy.split("-");
+      filterBy = filterBy[1].concat("-", filterBy[2], "-", filterBy[0]);
+      filterBy = new Date(filterBy).setHours(0,0,0,0);
+    }
     dispatch(loading());
     fetch(url.concat(`/task/${filterByType}/${filterBy}`), {
       method: "GET",

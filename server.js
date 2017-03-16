@@ -16,7 +16,6 @@ app.use(cors());
 
 //create new task
 app.post("/task", jsonParser, function(req, res) {
-  console.log("new task ", req.body.task);
   var newTask = new Task();
   newTask.name = req.body.name;
   newTask.end = req.body.end;
@@ -48,7 +47,6 @@ app.get("/task/:createdOrEnd/:date", function(req, res) {
   else if(req.params.createdOrEnd === "created") {
     Task.find({created: {$gt: req.params.date}}).exec()
     .then(function(tasks) {
-      console.log("created after: ", Date(req.params.date), new Date(tasks[0].created), Date(req.params.date) < new Date(tasks[0].created));
       return res.status(200).json(tasks);
     })
     .catch(function(err) {

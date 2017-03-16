@@ -16,7 +16,7 @@ const AppView = (props) => (
           <option value="end">End Before</option>
           <option value="created">Created After</option>
         </select>
-        <input type="date" name="filterByDate" defaultValue={props.filterBy} onChange={(e) => {props.editFilterBy(props.filterType, e.target.value)}} />
+        <input type="date" name="filterByDate" id="filterByDate" defaultValue={props.filterBy} onChange={(e) => {props.editFilterBy(props.filterType, e.target.value)}} />
         <button onClick={() => props.getTasks(props.filterType, props.filterBy)}>Filter Tasks</button>
       </section>
       <button id="createOrEditButton" onClick={() => {props.createTask()}}>Create Task</button>

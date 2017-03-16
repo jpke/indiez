@@ -57,7 +57,6 @@ import * as types from '../constants/actionTypes';
        };
      case types.CREATE_NEW_TASK:
       if(action.ID != "new") {
-        console.log(...state.tasks.filter((task) => {return task._id === action.ID}))
         newTask = {...state.tasks.filter((task) => {return task._id === action.ID})}[0];
       } else newTask = initialState.newTask
       return {
@@ -114,9 +113,16 @@ import * as types from '../constants/actionTypes';
         tasks: tasks
       };
      case types.UPDATE_TASKS:
+      tasks = action.tasks.map(task => {
+        task.end = new Date(task.end).toLocaleDateString().split("/");
+        if(task.end[0].split("").length === 1) task.end[0] = "0".concat(task.end[0]);
+        if(task.end[1].split("").length === 1) task.end[1] = "0".concat(task.end[1]);
+        task.end = task.end[2].concat("-", task.end[0], "-", task.end[1]);
+        return task;
+      })
       return {
         ...state,
-        tasks: action.tasks,
+        tasks: tasks
       };
       default:
        return state;
