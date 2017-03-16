@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getTasks, badResponse, deleteTask, createTask, editTask} from '../actions/taskActions';
+import {getTasks,
+        badResponse,
+        deleteTask,
+        createTask,
+        editTask,
+        editFilterBy} from '../actions/taskActions';
 import AppView from '../components/AppView';
 
 // This is a class-based component because the current
@@ -30,6 +35,10 @@ class AppContainer extends Component {
           createTask={this.props.createTask}
           deleteTask={this.props.deleteTask}
           createNewTask={this.props.createNewTask}
+          filterType={this.props.filterType}
+          filterBy={this.props.filterBy}
+          editFilterBy={this.props.editFilterBy}
+          getTasks={this.props.getTasks}
         />
     );
   }
@@ -40,7 +49,9 @@ function mapStateToProps(state) {
     tasks: state.tasks,
     createNewTask: state.createNewTask,
     errorMessage: state.errorMessage,
-    loading: state.loading
+    loading: state.loading,
+    filterType: state.filterType,
+    filterBy: state.filterBy
   }
 }
 
@@ -50,7 +61,8 @@ function mapDispatchToProps(dispatch) {
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID) => dispatch(deleteTask(taskID)),
     updateNewTask: (key, value) => dispatch(updateNewTask(key, value)),
-    createTask: (ID) => dispatch(createTask(ID))
+    createTask: (ID) => dispatch(createTask(ID)),
+    editFilterBy: (filterType, date) => dispatch(editFilterBy(filterType, date))
   }
 }
 

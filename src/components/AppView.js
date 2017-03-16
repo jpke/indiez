@@ -9,7 +9,16 @@ const AppView = (props) => (
   <div id="main">
     <section id="header">
       <h1>Task Manager</h1>
-      <p>Filter component will go here</p>
+      <section id="filter">
+        <select name="selectFilter" onChange={(e) => props.editFilterBy(e.target.value, props.filterBy)
+          }>
+          <option value="all">All Tasks</option>
+          <option value="end">End Before</option>
+          <option value="created">Created After</option>
+        </select>
+        <input type="date" name="filterByDate" defaultValue={props.filterBy} onChange={(e) => {props.editFilterBy(props.filterType, e.target.value)}} />
+        <button onClick={() => props.getTasks(props.filterType, props.filterBy)}>Filter Tasks</button>
+      </section>
       <button id="createOrEditButton" onClick={() => {props.createTask()}}>Create Task</button>
     </section>
     {props.createNewTask && <CreateTaskContainer/>}

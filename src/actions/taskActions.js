@@ -16,6 +16,14 @@ export function badResponse(errorMessage) {
   }
 }
 
+export function editFilterBy(filterType, date) {
+  return {
+    type: types.FILTER_BY,
+    date,
+    filterType
+  };
+}
+
 export function createTask(ID = "new") {
   return {
     type: types.CREATE_NEW_TASK,
@@ -111,10 +119,12 @@ export function submitTask(newTask) {
   }
 }
 
-export function getTasks(createdOrEnd = "all", value = "1") {
+export function getTasks(filterByType = "all", filterBy = "1") {
   return function(dispatch) {
+    if(filterBy != "1") filterBy = new Date(filterBy).getTime();
+    console.log("filterBy: ", filterBy);
     dispatch(loading());
-    fetch(url.concat(`/task/${createdOrEnd}/${value}`), {
+    fetch(url.concat(`/task/${filterByType}/${filterBy}`), {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -135,14 +145,5 @@ export function getTasks(createdOrEnd = "all", value = "1") {
     .catch((err) => {
       dispatch(badResponse("Problem fetching tasks"));
     })
-  }
-}
-
-// export function editTask(taskID)
-
-export function filterByDate(date) {
-  return {
-    type: types.FILTER_BY_DATE,
-    date
   }
 }

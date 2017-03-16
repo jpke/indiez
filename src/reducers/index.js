@@ -4,6 +4,8 @@ import * as types from '../constants/actionTypes';
    loading: false,
    errorMessage: "",
    createNewTask: false,
+   filterType: "all",
+   filterBy: "",
    newTask: {
      name: "task name",
      end: new Date(Date.now() + (1000*60*60*24)),
@@ -47,6 +49,12 @@ import * as types from '../constants/actionTypes';
         ...state,
         errorMessage: action.message
       }
+     case types.FILTER_BY:
+       return {
+         ...state,
+         filterBy: action.date,
+         filterType: action.filterType
+       };
      case types.CREATE_NEW_TASK:
       if(action.ID != "new") {
         console.log(...state.tasks.filter((task) => {return task._id === action.ID}))
@@ -109,13 +117,6 @@ import * as types from '../constants/actionTypes';
       return {
         ...state,
         tasks: action.tasks,
-      };
-     case types.FILTER_BY_DATE:
-      tasks = JSON.parse(JSON.stringify(state.tasks));
-
-      return {
-        ...state,
-        tasks: tasks
       };
       default:
        return state;

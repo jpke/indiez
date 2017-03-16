@@ -29,6 +29,17 @@ button:hover {
     text-align: center;
     width: 260px;
     margin-left: 15px;
+
+    #filter {
+      margin: 12px auto;
+
+      select, option{
+        width: 130px;
+        height: 25px;
+        font-size: 15px;
+        font-family: 'Roboto', sans-serif;
+      }
+    }
   }
 }
 
