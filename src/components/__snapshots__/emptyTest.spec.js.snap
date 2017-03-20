@@ -18,10 +18,10 @@ exports[`test renders correctly 1`] = `
       End Date
     </label>
     <input
+      defaultValue={undefined}
       name="endDate"
       onChange={[Function]}
-      type="date"
-      value={undefined} />
+      type="date" />
     <label>
       Description
     </label>
