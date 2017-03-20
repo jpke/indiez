@@ -59,7 +59,7 @@ export function deleteTask(taskID) {
         taskID
       })
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch(badResponse("Delete task error"));
     })
   }
@@ -88,7 +88,7 @@ export function submitTask(newTask) {
           task: response
         })
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(badResponse("Create new task "));
       })
     }
@@ -146,7 +146,7 @@ export function getTasks(filterByType = "all", filterBy = "1") {
         tasks: response
       })
     })
-    .catch((err) => {
+    .catch(() => {
       dispatch(badResponse("Problem fetching tasks"));
     })
   }

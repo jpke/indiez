@@ -4,7 +4,6 @@ import {getTasks,
         badResponse,
         deleteTask,
         createTask,
-        editTask,
         editFilterBy} from '../actions/taskActions';
 import AppView from '../components/AppView';
 
@@ -60,7 +59,6 @@ function mapDispatchToProps(dispatch) {
     getTasks: (createdOrEnd, value) => dispatch(getTasks(createdOrEnd, value)),
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID) => dispatch(deleteTask(taskID)),
-    updateNewTask: (key, value) => dispatch(updateNewTask(key, value)),
     createTask: (ID) => dispatch(createTask(ID)),
     editFilterBy: (filterType, date) => dispatch(editFilterBy(filterType, date))
   }
