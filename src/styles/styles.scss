@@ -136,4 +136,8 @@ ul {
   .taskSpacer {
     margin: 0 auto;
   }
+  #tasks:after {
+    content: "";
+    flex: 0;
+  }
 }
