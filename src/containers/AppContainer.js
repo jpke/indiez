@@ -19,7 +19,6 @@ class AppContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.props.getTasks("all", "1", this.props.token);
   }
 
   componentWillReceiveProps(newProps) {
@@ -27,9 +26,14 @@ class AppContainer extends Component {
       alert(newProps.errorMessage.concat(" failed, please try again"));
       this.props.clearErrorMessage();
     }
+    if(newProps.token && !this.props.token) {
+      console.log(newProps.token);
+      this.props.getTasks("all", "1", newProps.token);
+    }
   }
 
   render() {
+    console.log("filter by: ", this.props.filterBy);
     return (
       this.props.token ?
         <AppView
@@ -41,6 +45,7 @@ class AppContainer extends Component {
           filterBy={this.props.filterBy}
           editFilterBy={this.props.editFilterBy}
           getTasks={this.props.getTasks}
+          token={this.props.token}
           userName={this.props.userName}
           logOut={this.props.logOut}
         />

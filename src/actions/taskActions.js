@@ -232,22 +232,13 @@ export function submitTask(task, userId, token) {
 }
 
 export function getTasks(filterByType = "all", filterBy = "1", token) {
-  console.log("to send: ", filterByType, filterBy)
+  console.log("to send: ", filterByType, filterBy, token)
   return function(dispatch) {
-    if(filterBy === "") {
-      filterBy = 1;
-      console.log("filter by 1: ", filterBy);
+    // console.log("to send: ", filterByType, filterBy)
+    if(filterBy != 1 || filterBy != "1") {
+      filterBy = new Date(filterBy).getTime() + (new Date().getTimezoneOffset() * 1000 * 60)
     }
-    else if(filterBy != "1") {
-      console.log("filter by: ", filterBy);
-      filterBy = filterBy.split("-");
-      // if(typeof(filterBy) === 'number') {
-      //   console.log("converting filterby...")
-      //   filterBy = filterBy[1].concat("-", filterBy[2], "-", filterBy[0]);
-      // }
-      filterBy = new Date(filterBy[0], filterBy[1], filterBy[2]).setHours(0,0,0,0);
-    }
-    console.log("to send: ", filterByType, filterBy)
+    console.log("to send: ", filterByType, filterBy, token)
     dispatch(loading());
     fetch(url.concat(`task/${filterByType}/${filterBy}`), {
       method: "GET",

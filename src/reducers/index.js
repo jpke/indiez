@@ -118,17 +118,9 @@ import * as types from '../constants/actionTypes';
         tasks: tasks
       };
      case types.UPDATE_TASKS:
-      tasks = action.tasks.map(task => {
-        task.end = new Date(task.end).toLocaleDateString().split("/");
-        if(task.end[0].split("").length === 1) task.end[0] = "0".concat(task.end[0]);
-        if(task.end[1].split("").length === 1) task.end[1] = "0".concat(task.end[1]);
-        task.end = task.end[2].concat("-", task.end[0], "-", task.end[1]);
-        return task;
-      })
-      console.log(tasks, typeof(tasks[0]) === undefined);
       return {
         ...state,
-        tasks: tasks
+        tasks: action.tasks
       };
       default:
        return state;
