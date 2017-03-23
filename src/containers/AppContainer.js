@@ -29,6 +29,7 @@ class AppContainer extends Component {
 
   render() {
     return (
+      props.token ?
         <AppView
           tasks={this.props.tasks}
           createTask={this.props.createTask}
@@ -39,6 +40,8 @@ class AppContainer extends Component {
           editFilterBy={this.props.editFilterBy}
           getTasks={this.props.getTasks}
         />
+      :
+        <AuthView />
     );
   }
 }
@@ -51,6 +54,7 @@ function mapStateToProps(state) {
     loading: state.loading,
     filterType: state.filterType,
     filterBy: state.filterBy
+
   }
 }
 
