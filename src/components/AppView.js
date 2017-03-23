@@ -21,19 +21,23 @@ const AppView = (props) => (
           <option value="created">Created After</option>
         </select>
         <input type="date" name="filterByDate" id="filterByDate" defaultValue={props.filterBy} placeholder="yyyy-mm-dd" onChange={(e) => {props.editFilterBy(props.filterType, e.target.value)}} />
-        <button onClick={() => props.getTasks(props.filterType, props.filterBy)}>Filter Tasks</button>
+        <button onClick={() => props.getTasks(props.filterType, props.filterBy, props.token)}>Filter Tasks</button>
       </section>
       <button id="createOrEditButton" onClick={() => {props.createTask()}}>Create Task</button>
     </section>
     {props.createNewTask && <CreateTaskContainer/>}
     <section id="tasks">
-      {props.tasks && props.tasks.map((task, index) => {
-        return <TaskView task={task}
-                deleteTask={props.deleteTask}
-                createTask={props.createTask}
-                key={index}
-                />
-      })
+      {typeof(props.tasks[0]) !== "undefined" ?
+        props.tasks.map((task, index) => {
+          return <TaskView task={task}
+                  userName={props.userName}
+                  deleteTask={props.deleteTask}
+                  createTask={props.createTask}
+                  key={index}
+                  />
+        })
+      :
+       <p>No Tasks Listed</p>
       }
     </section>
   </div>

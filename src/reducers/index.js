@@ -9,29 +9,11 @@ import * as types from '../constants/actionTypes';
    filterBy: "",
    newTask: {
      name: "task name",
-     end: new Date(Date.now() + (1000*60*60*24)),
+     end: Date.now() + (1000*60*60*24),
      description: "task description",
      createdBy: "your name"
    },
-   tasks: [
-     {}
-    //  {
-    //    name: "task one",
-    //    end: new Date(Date.now() + (1000*60*60*24)),
-    //    description: "first task to complete",
-    //    created: Date.now(),
-    //    id: 1,
-    //    createdBy: "JP"
-    //  },
-    //  {
-    //    name: "task two",
-    //    end: new Date(Date.now() + (1000*60*60*24*2)),
-    //    description: "second task to complete",
-    //    created: Date.now(),
-    //    id: 2,
-    //    createdBy: "JP"
-    //  }
-   ]
+   tasks: []
  }
 
  export default function rootReducer(state = initialState, action) {
@@ -93,7 +75,8 @@ import * as types from '../constants/actionTypes';
           newTask.name = action.value;
           break;
         case "endDate":
-          newTask.end = new Date(new Date(action.value).getTime() + new Date(action.value).getTimezoneOffset() * 60000);
+          //save date as UTC milliseconds
+          newTask.end = new Date(action.value).getTime() + (new Date().getTimezoneOffset() * 1000 * 60);
           break;
         case "description":
           newTask.description = action.value;
@@ -142,6 +125,7 @@ import * as types from '../constants/actionTypes';
         task.end = task.end[2].concat("-", task.end[0], "-", task.end[1]);
         return task;
       })
+      console.log(tasks, typeof(tasks[0]) === undefined);
       return {
         ...state,
         tasks: tasks

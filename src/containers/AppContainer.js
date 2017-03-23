@@ -19,7 +19,7 @@ class AppContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.props.getTasks("all", "1");
+    this.props.getTasks("all", "1", this.props.token);
   }
 
   componentWillReceiveProps(newProps) {
@@ -66,10 +66,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getTasks: (createdOrEnd, value) => dispatch(getTasks(createdOrEnd, value)),
+    getTasks: (createdOrEnd, value, token) => dispatch(getTasks(createdOrEnd, value, token)),
     clearErrorMessage: () => dispatch(badResponse("")),
-    deleteTask: (taskID) => dispatch(deleteTask(taskID)),
-    createTask: (ID) => dispatch(createTask(ID)),
+    deleteTask: (taskID, token) => dispatch(deleteTask(taskID, token)),
+    createTask: (ID, token) => dispatch(createTask(ID, token)),
     editFilterBy: (filterType, date) => dispatch(editFilterBy(filterType, date)),
     logOut: () => dispatch(logOut())
   }

@@ -14,8 +14,6 @@ const CreateTaskView = (props) => (
       <input type="date" name="endDate" defaultValue={props.newTask.end} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
       <label>Description</label>
       <textarea type="text" name="description" defaultValue={props.newTask.description} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
-      <label>Created By</label>
-      <input type="text" name="createdBy" defaultValue={props.newTask.createdBy} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
       <section className="taskButtons">
         <button onClick={() => {props.cancelCreateTask()}}>Cancel</button>
         <button type="submit">{props.newTask._id ? "Update" : "Create"}</button>

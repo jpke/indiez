@@ -7,7 +7,7 @@ import CreateTaskView from '../components/CreateTaskView';
 export const CreateTaskContainer = (props) => {
 
   const createTask = () => {
-    props.submitTask(props.newTask)
+    props.submitTask(props.newTask, props.userId, props.token)
   }
 
   return (
@@ -16,7 +16,7 @@ export const CreateTaskContainer = (props) => {
         createTask={createTask}
         newTask={props.newTask}
         cancelCreateTask={props.cancelCreateTask}
-
+        userName={props.userName}
       />
   );
 };
@@ -25,14 +25,17 @@ export const CreateTaskContainer = (props) => {
 
 function mapStateToProps(state) {
   return {
-      newTask: state.newTask
+      newTask: state.newTask,
+      token: state.token,
+      userId: state.userId,
+      userName: state.userName
     }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     updateNewTask: (key, value) => dispatch(updateNewTask(key, value)),
-    submitTask: (newTask) => dispatch(submitTask(newTask)),
+    submitTask: (newTask, userId, token) => dispatch(submitTask(newTask, userId, token)),
     cancelCreateTask: () => dispatch(createTask())
   };
 }

@@ -147,14 +147,15 @@ export function updateNewTask(key, value, ID) {
   };
 }
 
-export function deleteTask(taskID) {
+export function deleteTask(taskID, token) {
   return function(dispatch) {
     dispatch(loading());
-    fetch(url.concat("/task/", taskID), {
+    fetch(url.concat("task/", taskID), {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     })
     .then(response => {
@@ -171,15 +172,18 @@ export function deleteTask(taskID) {
   }
 }
 
-export function submitTask(newTask) {
+export function submitTask(task, userId, token) {
+  let newTask = JSON.parse(JSON.stringify(task));
+  newTask.createdBy = userId;
   return function(dispatch) {
     dispatch(loading());
     if(!newTask._id){
-      fetch(url.concat("/task"), {
+      fetch(url.concat("task"), {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(newTask)
       })
@@ -199,11 +203,12 @@ export function submitTask(newTask) {
       })
     }
     else {
-      fetch(url.concat("/task"), {
+      fetch(url.concat("task"), {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(newTask)
       })
@@ -226,10 +231,14 @@ export function submitTask(newTask) {
   }
 }
 
-export function getTasks(filterByType = "all", filterBy = "1") {
+export function getTasks(filterByType = "all", filterBy = "1", token) {
   console.log("to send: ", filterByType, filterBy)
   return function(dispatch) {
-    if(filterBy != "1") {
+    if(filterBy === "") {
+      filterBy = 1;
+      console.log("filter by 1: ", filterBy);
+    }
+    else if(filterBy != "1") {
       console.log("filter by: ", filterBy);
       filterBy = filterBy.split("-");
       // if(typeof(filterBy) === 'number') {
@@ -240,11 +249,12 @@ export function getTasks(filterByType = "all", filterBy = "1") {
     }
     console.log("to send: ", filterByType, filterBy)
     dispatch(loading());
-    fetch(url.concat(`/task/${filterByType}/${filterBy}`), {
+    fetch(url.concat(`task/${filterByType}/${filterBy}`), {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     })
     .then(response => {
