@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../actions/eLearnActions';
+import * as actions from '../actions/taskActions';
 import AuthView from '../components/AuthView';
 
 //container for AuthView, adds necessary data to event calls triggered by AdminView
@@ -13,6 +13,7 @@ class AuthContainer extends Component {
   }
   //toggles between login and register views
   toggleView() {
+    console.log("clicked");
     this.props.actions.toggleView();
   }
   register(event) {

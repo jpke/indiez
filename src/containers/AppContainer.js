@@ -4,8 +4,10 @@ import {getTasks,
         badResponse,
         deleteTask,
         createTask,
-        editFilterBy} from '../actions/taskActions';
+        editFilterBy,
+        logOut } from '../actions/taskActions';
 import AppView from '../components/AppView';
+import AuthContainer from './AuthContainer';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -29,7 +31,7 @@ class AppContainer extends Component {
 
   render() {
     return (
-      props.token ?
+      this.props.token ?
         <AppView
           tasks={this.props.tasks}
           createTask={this.props.createTask}
@@ -39,9 +41,11 @@ class AppContainer extends Component {
           filterBy={this.props.filterBy}
           editFilterBy={this.props.editFilterBy}
           getTasks={this.props.getTasks}
+          userName={this.props.userName}
+          logOut={this.props.logOut}
         />
       :
-        <AuthView />
+        <AuthContainer />
     );
   }
 }
@@ -53,7 +57,9 @@ function mapStateToProps(state) {
     errorMessage: state.errorMessage,
     loading: state.loading,
     filterType: state.filterType,
-    filterBy: state.filterBy
+    filterBy: state.filterBy,
+    token: state.token,
+    userName: state.userName
 
   }
 }
@@ -64,7 +70,8 @@ function mapDispatchToProps(dispatch) {
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID) => dispatch(deleteTask(taskID)),
     createTask: (ID) => dispatch(createTask(ID)),
-    editFilterBy: (filterType, date) => dispatch(editFilterBy(filterType, date))
+    editFilterBy: (filterType, date) => dispatch(editFilterBy(filterType, date)),
+    logOut: () => dispatch(logOut())
   }
 }
 
