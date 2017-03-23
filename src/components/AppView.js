@@ -7,6 +7,10 @@ import CreateTaskContainer from '../containers/CreateTaskContainer'
 //calls child components passed in as props
 const AppView = (props) => (
   <div id="main">
+    <section id="top">
+      <button id="logout" onClick={() => props.logOut()}>Logout</button>
+      <p>{"Welcome " + props.userName}</p>
+    </section>
     <section id="header">
       <h1>Task Manager</h1>
       <section id="filter">
@@ -16,7 +20,7 @@ const AppView = (props) => (
           <option value="end">End Before</option>
           <option value="created">Created After</option>
         </select>
-        <input type="date" name="filterByDate" id="filterByDate" defaultValue={props.filterBy} onChange={(e) => {props.editFilterBy(props.filterType, e.target.value)}} />
+        <input type="date" name="filterByDate" id="filterByDate" defaultValue={props.filterBy} placeholder="yyyy-mm-dd" onChange={(e) => {props.editFilterBy(props.filterType, e.target.value)}} />
         <button onClick={() => props.getTasks(props.filterType, props.filterBy)}>Filter Tasks</button>
       </section>
       <button id="createOrEditButton" onClick={() => {props.createTask()}}>Create Task</button>

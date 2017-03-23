@@ -22,8 +22,40 @@ button:hover {
   background-color: #993D5B;
 }
 
+.authContainer {
+  text-align: center;
+
+  .loginContainer, .registerContainer, #authForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+    align-items: center;
+
+    input, button {
+      margin: 5px auto;
+    }
+
+    input {
+      height: 25px;
+    }
+  }
+}
+
 #main {
   margin: 15px auto;
+
+  #top {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: flex-start;
+
+    p {
+      margin-top: 0;
+    }
+  }
 
   #header {
     text-align: center;

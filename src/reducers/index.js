@@ -3,6 +3,7 @@ import * as types from '../constants/actionTypes';
  const initialState = {
    loading: false,
    errorMessage: "",
+   loginOrRegister: false,
    createNewTask: false,
    filterType: "all",
    filterBy: "",
@@ -49,6 +50,27 @@ import * as types from '../constants/actionTypes';
         ...state,
         errorMessage: action.message
       }
+     case types.TOGGLE_VIEW:
+      return {
+        ...state,
+        loginOrRegister: !state.loginOrRegister
+      }
+      //sets user info upon successful login
+     case types.LOG_IN:
+      return {
+        ...state,
+        userName: action.userName,
+        userId: action.userId,
+        token: action.token,
+      };
+      //resets user information to log user out of client side
+     case types.LOG_OUT:
+      return {
+        ...state,
+        userName: "",
+        userId: "",
+        token: "",
+      };
      case types.FILTER_BY:
        return {
          ...state,

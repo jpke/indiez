@@ -1,5 +1,8 @@
 export const LOADING = 'LOADING';
 export const UPDATE_ERROR = 'UPDATE_ERROR';
+export const TOGGLE_VIEW = 'TOGGLE_VIEW';
+export const LOG_IN = 'LOG_IN';
+export const LOG_OUT = 'LOG_OUT';
 export const FILTER_BY = 'FILTER_BY';
 export const CREATE_NEW_TASK = 'CREATE_NEW_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
