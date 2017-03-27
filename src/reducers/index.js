@@ -5,6 +5,7 @@ import * as types from '../constants/actionTypes';
    errorMessage: "",
    loginOrRegister: false,
    createNewTask: false,
+   filterWhos: "mine",
    filterType: "all",
    filterBy: "",
    newTask: {
@@ -56,8 +57,9 @@ import * as types from '../constants/actionTypes';
      case types.FILTER_BY:
        return {
          ...state,
-         filterBy: action.date,
-         filterType: action.filterType
+         filterWhos: action.filterWhos,
+         filterType: action.filterType,
+         filterBy: action.date
        };
      case types.CREATE_NEW_TASK:
       if(action.ID != "new") {

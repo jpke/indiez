@@ -121,11 +121,12 @@ export function logIn(email, password) {
   };
 }
 
-export function editFilterBy(filterType, date) {
+export function editFilterBy(filterWhos, filterType, date) {
   let dateCache = typeof(date);
   console.log("filter by: ", filterType, dateCache, date);
   return {
     type: types.FILTER_BY,
+    filterWhos,
     date,
     filterType
   };
@@ -231,13 +232,14 @@ export function submitTask(task, userId, token) {
   }
 }
 
-export function getTasks(filterByType = "all", filterBy = "1", token) {
+export function getTasks(filterByType = "all", filterBy = "1", whose = "mine", token) {
+  console.log(filterByType, filterBy, whose, token);
   return function(dispatch) {
     if(filterBy != 1 || filterBy != "1") {
       filterBy = new Date(filterBy).getTime() + (new Date().getTimezoneOffset() * 1000 * 60)
     }
     dispatch(loading());
-    fetch(url.concat(`task/${filterByType}/${filterBy}`), {
+    fetch(url.concat(`task/${filterByType}/${filterBy}/${whose}`), {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

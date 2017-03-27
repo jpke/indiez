@@ -27,7 +27,7 @@ class AppContainer extends Component {
       this.props.clearErrorMessage();
     }
     if(newProps.token && !this.props.token) {
-      this.props.getTasks("all", "1", newProps.token);
+      this.props.getTasks("all", "1", "mine", newProps.token);
     }
   }
 
@@ -39,6 +39,7 @@ class AppContainer extends Component {
           createTask={this.props.createTask}
           deleteTask={this.props.deleteTask}
           createNewTask={this.props.createNewTask}
+          filterWhos={this.props.filterWhos}
           filterType={this.props.filterType}
           filterBy={this.props.filterBy}
           editFilterBy={this.props.editFilterBy}
@@ -59,6 +60,7 @@ function mapStateToProps(state) {
     createNewTask: state.createNewTask,
     errorMessage: state.errorMessage,
     loading: state.loading,
+    filterWhos: state.filterWhos,
     filterType: state.filterType,
     filterBy: state.filterBy,
     token: state.token,
@@ -69,11 +71,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getTasks: (createdOrEnd, value, token) => dispatch(getTasks(createdOrEnd, value, token)),
+    getTasks: (createdOrEnd, value, whose, token) => dispatch(getTasks(createdOrEnd, value, whose, token)),
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID, token) => dispatch(deleteTask(taskID, token)),
     createTask: (ID, token) => dispatch(createTask(ID, token)),
-    editFilterBy: (filterType, date) => dispatch(editFilterBy(filterType, date)),
+    editFilterBy: (filterWhos, filterType, date) => dispatch(editFilterBy(filterWhos, filterType, date)),
     logOut: () => dispatch(logOut())
   }
 }

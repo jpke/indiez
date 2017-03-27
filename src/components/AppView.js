@@ -2,6 +2,9 @@ import React from 'react';
 import TaskView from './TaskView.js'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
 
+const url = "http://localhost:8080/";
+// const url = "https://taskmanager-3-17.herokuapp.com";
+
 //view component, receives props from AppContainer
 //returns background app view nav and header
 //calls child components passed in as props
@@ -10,19 +13,32 @@ const AppView = (props) => (
     <section id="top">
       <button id="logout" onClick={() => props.logOut()}>Logout</button>
       <p>{"Welcome " + props.userName}</p>
+      {props.profileImage ? <image src={url + props.userName} />
+        :
+        <div>
+          <p>upload profile pic here</p>
+          <input type="file" id="profilePicSelector" onChange={(e) => {console.log(e.target.files[0])}}/>
+          <button id="imageUpload" onClick={() => props.uploadImage(props.newProfileImage, token)}>Upload</button>
+        </div>
+      }
     </section>
     <section id="header">
       <h1>Task Manager</h1>
       <section id="filter">
-        <select name="selectFilter" onChange={(e) => props.editFilterBy(e.target.value, props.filterBy)
+        <select name="selectFilter" onChange={(e) => props.editFilterBy(e.target.value, props.filterType, props.filterBy)
           }>
-          <option value="all">All Tasks</option>
+          <option value="mine">My Tasks</option>
+          <option value="everyone">Everyone's Tasks</option>
+        </select>
+        <select name="selectFilter" onChange={(e) => props.editFilterBy(props.filterWhos, e.target.value, props.filterBy)
+          }>
+          <option value="all">All</option>
           <option value="end">End Before</option>
           <option value="created">Created After</option>
         </select>
-        <input type="date" name="filterByDate" id="filterByDate" defaultValue={props.filterBy} placeholder="yyyy-mm-dd" onChange={(e) => {props.editFilterBy(props.filterType, e.target.value)}} />
-        <button onClick={() => props.getTasks(props.filterType, props.filterBy, props.token)}>Filter Tasks</button>
+        <input type="date" name="filterByDate" id="filterByDate" defaultValue={props.filterBy} placeholder="yyyy-mm-dd" onChange={(e) => {props.editFilterBy(props.filterWhos, props.filterType, e.target.value)}} />
       </section>
+      <button onClick={() => props.getTasks(props.filterType, props.filterBy, props.filterWhos, props.token)}>Filter Tasks</button>
       <button id="createOrEditButton" onClick={() => {props.createTask()}}>Create Task</button>
     </section>
     {props.createNewTask && <CreateTaskContainer/>}
