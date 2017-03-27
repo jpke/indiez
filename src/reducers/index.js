@@ -15,12 +15,12 @@ import * as types from '../constants/actionTypes';
      createdBy: "your name"
    },
    tasks: [],
-   newProfileImage: ""
+   newProfilePic: ""
  }
 
  export default function rootReducer(state = initialState, action) {
    //declare vars
-   let newTask, tasks, index;
+   let newTask, tasks, index, cache;
 
    switch(action.type) {
 
@@ -126,9 +126,10 @@ import * as types from '../constants/actionTypes';
         tasks: action.tasks
       };
      case types.NEW_PROFILE_PIC:
+      cache = JSON.parse(JSON.stringify(action.newProfilePic));
       return {
         ...state,
-        newProfilePic: action.newProfilePic
+        newProfilePic: cache
       };
      case types.UPDATE_PROFILE_PIC:
       return {
