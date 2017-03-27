@@ -232,13 +232,10 @@ export function submitTask(task, userId, token) {
 }
 
 export function getTasks(filterByType = "all", filterBy = "1", token) {
-  console.log("to send: ", filterByType, filterBy, token)
   return function(dispatch) {
-    // console.log("to send: ", filterByType, filterBy)
     if(filterBy != 1 || filterBy != "1") {
       filterBy = new Date(filterBy).getTime() + (new Date().getTimezoneOffset() * 1000 * 60)
     }
-    console.log("to send: ", filterByType, filterBy, token)
     dispatch(loading());
     fetch(url.concat(`task/${filterByType}/${filterBy}`), {
       method: "GET",

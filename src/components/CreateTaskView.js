@@ -11,7 +11,7 @@ const CreateTaskView = (props) => (
       <label>Task Name</label>
       <input type="text" name="name" defaultValue={props.newTask.name} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
       <label>End Date</label>
-      <input type="date" name="endDate" defaultValue={props.newTask.end} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
+      <input type="date" name="endDate" defaultValue={props.endDate} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
       <label>Description</label>
       <textarea type="text" name="description" defaultValue={props.newTask.description} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
       <section className="taskButtons">

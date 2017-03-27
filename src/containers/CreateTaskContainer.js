@@ -10,11 +10,24 @@ export const CreateTaskContainer = (props) => {
     props.submitTask(props.newTask, props.userId, props.token)
   }
 
+  const formatDate = (date) => {
+    let d = new Date(+date).toLocaleDateString();
+    d = d.split('/');
+    let month = "" + d[0]
+    let day = "" + d[1]
+    let pad = "00"
+    d[0] = pad.substring(0, pad.length - month.length) + month
+    d[1] = pad.substring(0, pad.length - day.length) + day
+    d = d[2].concat("-", d[0], "-", d[1]);
+    return d;
+  }
+
   return (
       <CreateTaskView
         updateNewTask={props.updateNewTask}
         createTask={createTask}
         newTask={props.newTask}
+        endDate={formatDate(props.newTask.end)}
         cancelCreateTask={props.cancelCreateTask}
         userName={props.userName}
       />

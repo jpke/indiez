@@ -13,7 +13,6 @@ class AuthContainer extends Component {
   }
   //toggles between login and register views
   toggleView() {
-    console.log("clicked");
     this.props.actions.toggleView();
   }
   register(event) {

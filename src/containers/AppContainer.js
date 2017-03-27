@@ -27,13 +27,11 @@ class AppContainer extends Component {
       this.props.clearErrorMessage();
     }
     if(newProps.token && !this.props.token) {
-      console.log(newProps.token);
       this.props.getTasks("all", "1", newProps.token);
     }
   }
 
   render() {
-    console.log("filter by: ", this.props.filterBy);
     return (
       this.props.token ?
         <AppView
