@@ -10,3 +10,5 @@ export const UPDATE_NEW_TASK = 'UPDATE_NEW_TASK';
 export const ADD_TASK = 'ADD_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const UPDATE_TASKS = 'UPDATE_TASKS';
+export const NEW_PROFILE_PIC = 'NEW_PROFILE_PIC';
+export const UPDATE_PROFILE_PIC = 'UPDATE_PROFILE_PIC';

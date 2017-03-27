@@ -14,7 +14,8 @@ import * as types from '../constants/actionTypes';
      description: "task description",
      createdBy: "your name"
    },
-   tasks: []
+   tasks: [],
+   newProfileImage: ""
  }
 
  export default function rootReducer(state = initialState, action) {
@@ -123,6 +124,16 @@ import * as types from '../constants/actionTypes';
       return {
         ...state,
         tasks: action.tasks
+      };
+     case types.NEW_PROFILE_PIC:
+      return {
+        ...state,
+        newProfilePic: action.newProfilePic
+      };
+     case types.UPDATE_PROFILE_PIC:
+      return {
+        ...state,
+        profileImage: actions.profileImage
       };
       default:
        return state;

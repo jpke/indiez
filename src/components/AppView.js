@@ -17,8 +17,8 @@ const AppView = (props) => (
         :
         <div>
           <p>upload profile pic here</p>
-          <input type="file" id="profilePicSelector" onChange={(e) => {console.log(e.target.files[0])}}/>
-          <button id="imageUpload" onClick={() => props.uploadImage(props.newProfileImage, token)}>Upload</button>
+          <input type="file" id="profilePicSelector" onChange={(e) => {props.newProfilePic(e.target.files[0])}}/>
+          <button id="imageUpload" onClick={() => props.uploadProfileImage(props.newProfileImage, token)}>Upload</button>
         </div>
       }
     </section>

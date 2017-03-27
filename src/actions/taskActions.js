@@ -263,3 +263,40 @@ export function getTasks(filterByType = "all", filterBy = "1", whose = "mine", t
     })
   }
 }
+
+export function newProfilePic(newProfilePic) {
+  return {
+    type: types.NEW_PROFILE_PIC,
+    newProfilePic
+  }
+}
+
+export function uploadProfileImage(file, token) {
+  return function(dispatch) {
+    dispatch(loading("uploading profile image"));
+      let formData = new FormData(file);
+      fetch(url.concat('lessons/'), {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
+      })
+      .then(response => {
+        if(response.status != 201) throw response;
+        return response.json();
+      })
+      .then(response => {
+        return dispatch({
+          type: types.UPDATE_PROFILE_PIC,
+          profileImage: response.profileImage
+        });
+      })
+      .catch(error => {
+        dispatch(badResponse("Problem with uploading file"))
+        console.log("error response: ", error);
+      })
+  }
+}

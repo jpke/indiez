@@ -5,7 +5,10 @@ import {getTasks,
         deleteTask,
         createTask,
         editFilterBy,
-        logOut } from '../actions/taskActions';
+        logOut,
+        newProfilePic,
+        uploadProfileImage
+      } from '../actions/taskActions';
 import AppView from '../components/AppView';
 import AuthContainer from './AuthContainer';
 
@@ -47,6 +50,8 @@ class AppContainer extends Component {
           token={this.props.token}
           userName={this.props.userName}
           logOut={this.props.logOut}
+          newProfilePic={this.props.newProfilePic}
+          uploadProfileImage={this.props.uploadProfileImage}
         />
       :
         <AuthContainer />
@@ -76,7 +81,9 @@ function mapDispatchToProps(dispatch) {
     deleteTask: (taskID, token) => dispatch(deleteTask(taskID, token)),
     createTask: (ID, token) => dispatch(createTask(ID, token)),
     editFilterBy: (filterWhos, filterType, date) => dispatch(editFilterBy(filterWhos, filterType, date)),
-    logOut: () => dispatch(logOut())
+    logOut: () => dispatch(logOut()),
+    newProfilePic: (file) => dispatch(newProfilePic(file)),
+    uploadProfileImage: (file, token) => dispatch(uploadProfileImage(file, token))
   }
 }
 
