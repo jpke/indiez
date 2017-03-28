@@ -2,8 +2,8 @@ import React from 'react';
 import TaskView from './TaskView.js'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
 
-const url = "http://localhost:8080/";
-// const url = "https://taskmanager-3-17.herokuapp.com";
+// const url = "http://localhost:8080/";
+const url = "https://taskmanager-3-17.herokuapp.com";
 
 //view component, receives props from AppContainer
 //returns background app view nav and header

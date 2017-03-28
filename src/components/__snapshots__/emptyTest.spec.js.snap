@@ -30,14 +30,6 @@ exports[`test renders correctly 1`] = `
       name="description"
       onChange={[Function]}
       type="text" />
-    <label>
-      Created By
-    </label>
-    <input
-      defaultValue={undefined}
-      name="createdBy"
-      onChange={[Function]}
-      type="text" />
     <section
       className="taskButtons">
       <button
