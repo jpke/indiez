@@ -34,6 +34,11 @@ class AppContainer extends Component {
     }
   }
 
+  uploadProfilePic() {
+    let file = document.getElementById("profilePicSelector").files[0];
+    this.props.uploadProfileImage(file, this.props.token)
+  }
+
   render() {
     return (
       this.props.token ?
@@ -51,7 +56,7 @@ class AppContainer extends Component {
           userName={this.props.userName}
           logOut={this.props.logOut}
           newProfilePic={this.props.newProfilePic}
-          uploadProfileImage={this.props.uploadProfileImage}
+          uploadProfileImage={this.uploadProfilePic.bind(this)}
         />
       :
         <AuthContainer />

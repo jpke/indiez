@@ -134,7 +134,7 @@ import * as types from '../constants/actionTypes';
      case types.UPDATE_PROFILE_PIC:
       return {
         ...state,
-        profileImage: actions.profileImage
+        profileImage: action.profileImage
       };
       default:
        return state;

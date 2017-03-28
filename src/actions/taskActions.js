@@ -265,7 +265,6 @@ export function getTasks(filterByType = "all", filterBy = "1", whose = "mine", t
 }
 
 export function newProfilePic(newProfilePic) {
-  console.log(newProfilePic)
   return {
     type: types.NEW_PROFILE_PIC,
     newProfilePic
@@ -275,12 +274,12 @@ export function newProfilePic(newProfilePic) {
 export function uploadProfileImage(file, token) {
   return function(dispatch) {
     dispatch(loading("uploading profile image"));
-      let formData = new FormData(file);
+      let formData = new FormData();
+      formData.append("file", file);
       fetch(url.concat('profileImage'), {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`
         },
         body: formData
