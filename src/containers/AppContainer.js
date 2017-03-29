@@ -55,6 +55,7 @@ class AppContainer extends Component {
           token={this.props.token}
           userName={this.props.userName}
           logOut={this.props.logOut}
+          profileImage={this.props.profileImage}
           newProfilePic={this.props.newProfilePic}
           uploadProfileImage={this.uploadProfilePic.bind(this)}
         />
@@ -74,7 +75,8 @@ function mapStateToProps(state) {
     filterType: state.filterType,
     filterBy: state.filterBy,
     token: state.token,
-    userName: state.userName
+    userName: state.userName,
+    profileImage: state.profileImage
 
   }
 }

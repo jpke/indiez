@@ -2,8 +2,8 @@ import React from 'react';
 import TaskView from './TaskView.js'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
 
-// const url = "http://localhost:8080/";
-const url = "https://taskmanager-3-17.herokuapp.com";
+const url = "http://localhost:8080/";
+// const url = "https://taskmanager-3-17.herokuapp.com";
 
 //view component, receives props from AppContainer
 //returns background app view nav and header
@@ -13,7 +13,7 @@ const AppView = (props) => (
     <section id="top">
       <button id="logout" onClick={() => props.logOut()}>Logout</button>
       <p>{"Welcome " + props.userName}</p>
-      {props.profileImage ? <image src={url + props.userName} />
+      {true ? <img className="profileImage" src={url + "profileImage/" + "upload_5c790255ffc127a4d2c7acad0ebdf359"} />
         :
         <div>
           <p>upload profile pic here</p>
