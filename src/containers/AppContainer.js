@@ -7,7 +7,8 @@ import {getTasks,
         editFilterBy,
         logOut,
         newProfilePic,
-        uploadProfileImage
+        uploadProfileImage,
+        unsetProfilePic
       } from '../actions/taskActions';
 import AppView from '../components/AppView';
 import AuthContainer from './AuthContainer';
@@ -55,7 +56,10 @@ class AppContainer extends Component {
           token={this.props.token}
           userName={this.props.userName}
           logOut={this.props.logOut}
-          profileImage={this.props.profileImage}
+          userId={this.props.userId}
+          profilePicSet={this.props.profilePicSet}
+          unsetProfilePic={this.props.unsetProfilePic}
+          profilePicExists={this.props.profilePicExists}
           newProfilePic={this.props.newProfilePic}
           uploadProfileImage={this.uploadProfilePic.bind(this)}
         />
@@ -76,7 +80,9 @@ function mapStateToProps(state) {
     filterBy: state.filterBy,
     token: state.token,
     userName: state.userName,
-    profileImage: state.profileImage
+    userId: state.userId,
+    profilePicSet: state.profilePicSet,
+    profilePicExists: state.profilePicExists
 
   }
 }
@@ -90,7 +96,8 @@ function mapDispatchToProps(dispatch) {
     editFilterBy: (filterWhos, filterType, date) => dispatch(editFilterBy(filterWhos, filterType, date)),
     logOut: () => dispatch(logOut()),
     newProfilePic: (file) => dispatch(newProfilePic(file)),
-    uploadProfileImage: (file, token) => dispatch(uploadProfileImage(file, token))
+    uploadProfileImage: (file, token) => dispatch(uploadProfileImage(file, token)),
+    unsetProfilePic: () => dispatch(unsetProfilePic())
   }
 }
 

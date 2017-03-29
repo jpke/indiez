@@ -29,15 +29,23 @@ function loggedIn(response) {
     type: types.LOG_IN,
     userName: response.name,
     userId: response._id,
+    profilePicSet: response.profilePicSet,
     token: response.token
   };
 }
 
 //dispatches logout action to reducer
 export function logOut() {
-
   return {
     type: types.LOG_OUT
+  };
+}
+
+//toggles profilePicSet to reveal or hide user profile pic
+export function unsetProfilePic() {
+  console.log("action triggered")
+  return {
+    type: types.PROFILE_PIC_TOGGLE_SET
   };
 }
 
@@ -288,10 +296,9 @@ export function uploadProfileImage(file, token) {
         if(response.status != 201) throw response;
         return response.json();
       })
-      .then(response => {
+      .then(() => {
         return dispatch({
-          type: types.UPDATE_PROFILE_PIC,
-          profileImage: response.profileImage
+          type: types.UPDATE_PROFILE_PIC
         });
       })
       .catch(error => {

@@ -15,6 +15,7 @@ import * as types from '../constants/actionTypes';
      createdBy: "your name"
    },
    tasks: [],
+   profilePicSet: false,
    newProfilePic: ""
  }
 
@@ -46,6 +47,7 @@ import * as types from '../constants/actionTypes';
         userName: action.userName,
         userId: action.userId,
         token: action.token,
+        profilePicSet: action.profilePicSet
       };
       //resets user information to log user out of client side
      case types.LOG_OUT:
@@ -55,6 +57,13 @@ import * as types from '../constants/actionTypes';
         userId: "",
         token: "",
       };
+     case types.PROFILE_PIC_TOGGLE_SET:
+      console.log("to reducer")
+       return {
+         ...state,
+         profilePicSet: !state.profilePicSet,
+         profilePicExists: true
+       };
      case types.FILTER_BY:
        return {
          ...state,
@@ -134,7 +143,7 @@ import * as types from '../constants/actionTypes';
      case types.UPDATE_PROFILE_PIC:
       return {
         ...state,
-        profileImage: action.profileImage
+        profilePicSet: true
       };
       default:
        return state;

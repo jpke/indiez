@@ -12,15 +12,19 @@ const AppView = (props) => (
   <div id="main">
     <section id="top">
       <button id="logout" onClick={() => props.logOut()}>Logout</button>
-      <p>{"Welcome " + props.userName}</p>
-      {true ? <img className="profileImage" src={url + "profileImage/" + "upload_5c790255ffc127a4d2c7acad0ebdf359"} />
-        :
-        <div>
-          <p>upload profile pic here</p>
-          <input type="file" id="profilePicSelector" onChange={(e) => {props.newProfilePic(e.target.files[0])}}/>
-          <button id="imageUpload" onClick={() => props.uploadProfileImage()}>Upload</button>
-        </div>
-      }
+      <div id="userProfile">
+        <p>{"Welcome " + props.userName}</p>
+        {props.profilePicSet ?
+          <img className="profileImage" src={url + "profileImage/" + props.userId} onClick={() => props.unsetProfilePic()}/>
+          :
+          <div id="profilePicUpload">
+            <p>upload profile pic</p>
+            <input type="file" id="profilePicSelector" onChange={(e) => {props.newProfilePic(e.target.files[0])}}/>
+            <button id="imageUpload" onClick={() => props.uploadProfileImage()}>Upload</button>
+            {props.profilePicExists && <button id="imageUpload" onClick={() => props.unsetProfilePic()}>Cancel</button>}
+          </div>
+        }
+      </div>
     </section>
     <section id="header">
       <h1>Task Manager</h1>
