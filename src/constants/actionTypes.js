@@ -1,6 +1,7 @@
 export const LOADING = 'LOADING';
 export const UPDATE_ERROR = 'UPDATE_ERROR';
 export const TOGGLE_VIEW = 'TOGGLE_VIEW';
+export const TOGGLE_TASK_USER_VIEW = 'TOGGLE_TASK_USER_VIEW';
 export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
 export const FILTER_BY = 'FILTER_BY';

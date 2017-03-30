@@ -22,6 +22,12 @@ export function toggleView() {
   }
 }
 
+export function toggleTaskUser() {
+  return {
+    type: types.TOGGLE_TASK_USER_VIEW
+  }
+}
+
 //dispatches user info to reducer; called upon successful registration or login
 function loggedIn(response) {
   return {

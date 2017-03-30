@@ -16,7 +16,8 @@ import * as types from '../constants/actionTypes';
    },
    tasks: [],
    profilePicSet: false,
-   newProfilePic: ""
+   newProfilePic: "",
+   taskView: true
  }
 
  export default function rootReducer(state = initialState, action) {
@@ -40,6 +41,11 @@ import * as types from '../constants/actionTypes';
         ...state,
         loginOrRegister: !state.loginOrRegister
       }
+     case types.TOGGLE_TASK_USER_VIEW:
+      return {
+        ...state,
+        taskView: !state.taskView
+      };
       //sets user info upon successful login
      case types.LOG_IN:
       return {

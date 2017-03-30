@@ -8,7 +8,8 @@ import {getTasks,
         logOut,
         newProfilePic,
         uploadProfileImage,
-        unsetProfilePic
+        unsetProfilePic,
+        toggleTaskUser,
       } from '../actions/taskActions';
 import AppView from '../components/AppView';
 import AuthContainer from './AuthContainer';
@@ -62,6 +63,8 @@ class AppContainer extends Component {
           profilePicExists={this.props.profilePicExists}
           newProfilePic={this.props.newProfilePic}
           uploadProfileImage={this.uploadProfilePic.bind(this)}
+          toggleTaskUser={this.props.toggleTaskUser}
+          taskView={this.props.taskView}
         />
       :
         <AuthContainer />
@@ -82,7 +85,8 @@ function mapStateToProps(state) {
     userName: state.userName,
     userId: state.userId,
     profilePicSet: state.profilePicSet,
-    profilePicExists: state.profilePicExists
+    profilePicExists: state.profilePicExists,
+    taskView: state.taskView
 
   }
 }
@@ -97,7 +101,8 @@ function mapDispatchToProps(dispatch) {
     logOut: () => dispatch(logOut()),
     newProfilePic: (file) => dispatch(newProfilePic(file)),
     uploadProfileImage: (file, token) => dispatch(uploadProfileImage(file, token)),
-    unsetProfilePic: () => dispatch(unsetProfilePic())
+    unsetProfilePic: () => dispatch(unsetProfilePic()),
+    toggleTaskUser: () => dispatch(toggleTaskUser())
   }
 }
 

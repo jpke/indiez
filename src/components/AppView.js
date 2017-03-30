@@ -26,11 +26,14 @@ const AppView = (props) => (
     </section>
     <section id="header">
       <h1>Task Manager</h1>
+      <div id="task-user-toggle">
+        <button className="task-user-toggle" onClick={() => {props.toggleTaskUser()}}>{props.taskView ? "View Users" : "View Tasks"}</button>
+      </div>
       <section id="filter">
         <select name="selectFilter" onChange={(e) => props.editFilterBy(e.target.value, props.filterType, props.filterBy)
           }>
           <option value="mine">My Tasks</option>
-          <option value="everyone">Everyone's Tasks</option>
+          <option value="everyone">All Tasks</option>
         </select>
         <select name="selectFilter" onChange={(e) => props.editFilterBy(props.filterWhos, e.target.value, props.filterBy)
           }>
