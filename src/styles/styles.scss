@@ -89,26 +89,30 @@ button:hover {
 
   #header {
     text-align: center;
+  }
 
-    #filter {
-      margin: 12px auto;
+  #taskListContainer  {
+    text-align: center;
+  }
 
-      select, option {
-        width: 130px;
-        height: 25px;
-        font-size: 15px;
-        font-family: 'Roboto', sans-serif;
-      }
+  #filter {
+    margin: 12px auto;
 
-      #filterByDate {
-        margin: 3px 0 12px 6px;
-        height: 22px;
-        width: 130px;
-        font-size: 10px;
-        padding: 3px;
-        border-radius: 3px;
-        border: none;
-      }
+    select, option {
+      width: 130px;
+      height: 25px;
+      font-size: 15px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    #filterByDate {
+      margin: 3px 0 12px 6px;
+      height: 22px;
+      width: 130px;
+      font-size: 10px;
+      padding: 3px;
+      border-radius: 3px;
+      border: none;
     }
   }
 }
