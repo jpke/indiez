@@ -1,8 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import * as types from '../constants/actionTypes';
 
-const url = "http://localhost:8080/";
-// const url = "https://taskmanager-3-17.herokuapp.com/";
+const url = types.url;
 
 export function loading() {
   return {

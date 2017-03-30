@@ -1,9 +1,7 @@
 import React from 'react';
 import TaskView from './TaskView.js'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
-
-const url = "http://localhost:8080/";
-// const url = "https://taskmanager-3-17.herokuapp.com";
+import {url} from '../constants/actionTypes'
 
 //view component, receives props from AppContainer
 //returns background app view nav and header
@@ -50,7 +48,6 @@ const AppView = (props) => (
       {typeof(props.tasks[0]) !== "undefined" ?
         props.tasks.map((task, index) => {
           return <TaskView task={task}
-                  userName={props.userName}
                   deleteTask={props.deleteTask}
                   createTask={props.createTask}
                   key={index}
