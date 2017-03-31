@@ -252,7 +252,6 @@ export function submitTask(task, userId, token) {
 }
 
 export function getTasks(filterByType = "all", filterBy = "1", whose = "mine", token) {
-  console.log(filterByType, filterBy, whose, token);
   return function(dispatch) {
     if(filterBy != 1 || filterBy != "1") {
       filterBy = new Date(filterBy).getTime() + (new Date().getTimezoneOffset() * 1000 * 60)

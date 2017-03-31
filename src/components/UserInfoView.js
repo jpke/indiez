@@ -6,6 +6,7 @@ import {url} from '../constants/actionTypes'
 const UserInfoView = (props) => (
   <div id="taskListContainer">
     <button id="toggleUserView" onClick={() => props.toggleUserView()}>Back</button>
+    <h2>{`${props.user.name}'s Tasks`}</h2>
     <section id="tasks">
       {typeof(props.tasks) !== "undefined" ?
         props.tasks.map((task, index) => {
