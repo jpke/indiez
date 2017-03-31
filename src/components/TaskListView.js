@@ -1,7 +1,6 @@
 import React from 'react';
 import TaskView from './TaskView.js'
 import CreateTaskContainer from '../containers/CreateTaskContainer'
-import {url} from '../constants/actionTypes'
 
 
 const TaskListView = (props) => (

@@ -2,7 +2,7 @@ import React from 'react';
 import {url} from '../constants/actionTypes'
 
 //creates card for task
-const TaskView = ({task, deleteTask, createTask, userName, readOnly}) => (
+const TaskView = ({task, deleteTask, createTask, readOnly}) => (
   <div className="taskSpacer">
     <div className="taskContainer" key={task.id}>
       <h3>{task.name}</h3>

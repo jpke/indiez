@@ -1,6 +1,5 @@
 import React from 'react';
 import UserView from './UserView.js'
-import {url} from '../constants/actionTypes'
 
 
 const UserListView = (props) => (

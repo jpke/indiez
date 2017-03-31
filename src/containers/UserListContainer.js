@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {viewUser, toggleUserView} from '../actions/taskActions';
 import UserInfoView from '../components/UserInfoView';

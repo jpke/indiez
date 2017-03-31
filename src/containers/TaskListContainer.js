@@ -1,12 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {getTasks,
         deleteTask,
         createTask,
         editFilterBy,
-        newProfilePic,
-        uploadProfileImage,
-        unsetProfilePic,
         toggleTaskUser,
       } from '../actions/taskActions';
 import TaskListView from '../components/TaskListView';
