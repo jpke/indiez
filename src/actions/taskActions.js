@@ -28,6 +28,12 @@ export function toggleTaskUser() {
   }
 }
 
+export function toggleUserView() {
+  return {
+    type: types.TOGGLE_USER_VIEW
+  }
+}
+
 //dispatches user info to reducer; called upon successful registration or login
 function loggedIn(response) {
   return {
@@ -303,6 +309,38 @@ export function getUsers(token) {
     })
     .catch(() => {
       dispatch(badResponse("Problem fetching users"));
+    })
+  }
+}
+
+export function viewUser(user, token) {
+  return function(dispatch) {
+    dispatch(loading());
+    fetch(url.concat(`users/${user._id}`), {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      dispatch(loading());
+      console.log("response status: ", response.status, response.status !== 200)
+      if(response.status !== 200) throw response;
+      return response.json()
+    })
+    .then(response => {
+      dispatch({
+        type: types.UPDATE_SELECTED_USER,
+        tasks: response,
+        selectedUser: user
+      })
+      dispatch(toggleUserView());
+    })
+    .catch((err) => {
+      console.log("error: ", err);
+      dispatch(badResponse("Problem fetching tasks"));
     })
   }
 }

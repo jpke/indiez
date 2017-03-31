@@ -2,9 +2,9 @@ import React from 'react';
 import {url} from '../constants/actionTypes'
 
 //creates card for task
-const UserView = ({user, index}) => (
+const UserView = ({user, index, viewUser}) => (
   <div className="itemSpacer" key={index}>
-    <div className="itemContainer" key={user._id}>
+    <div className="itemContainer" key={user._id} onClick={() => {viewUser(user)}}>
       <h3>{user.name}</h3>
       <section className="listProfileImage">
         {user.profilePicSet ?

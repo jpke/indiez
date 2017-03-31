@@ -46,6 +46,11 @@ import * as types from '../constants/actionTypes';
         ...state,
         taskView: !state.taskView
       };
+     case types.TOGGLE_USER_VIEW:
+      return {
+        ...state,
+        userView: !state.userView
+      };
       //sets user info upon successful login
      case types.LOG_IN:
       return {
@@ -144,6 +149,12 @@ import * as types from '../constants/actionTypes';
       return {
         ...state,
         users: action.users
+      };
+     case types.UPDATE_SELECTED_USER:
+      return {
+        ...state,
+        userTasks: action.tasks,
+        selectedUser: action.selectedUser
       };
      case types.NEW_PROFILE_PIC:
       cache = JSON.parse(JSON.stringify(action.newProfilePic));

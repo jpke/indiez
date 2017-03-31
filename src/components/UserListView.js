@@ -10,11 +10,10 @@ const UserListView = (props) => (
       {
         props.users.map((user, index) => {
           return <UserView
+                  key={index}
                   index={index}
                   user={user}
-
-                  getTasks={props.getTasks}
-                  token={props.token}
+                  viewUser={props.viewUser}
                   />
         })
       }
