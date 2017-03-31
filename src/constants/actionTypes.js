@@ -18,5 +18,5 @@ export const NEW_PROFILE_PIC = 'NEW_PROFILE_PIC';
 export const UPDATE_PROFILE_PIC = 'UPDATE_PROFILE_PIC';
 export const PROFILE_PIC_TOGGLE_SET = 'PROFILE_PIC_TOGGLE_SET';
 
-export const url = "http://localhost:8080/";
-// export const url = "https://taskmanager-3-17.herokuapp.com";
+// export const url = "http://localhost:8080/";
+export const url = "https://taskmanager-3-17.herokuapp.com/";
