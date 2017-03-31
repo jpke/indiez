@@ -30,8 +30,8 @@ const AppView = (props) => (
         <button className="task-user-toggle" onClick={() => {props.toggleTaskUser()}}>{props.taskView ? "View Users" : "View Tasks"}</button>
       </div>
     </section>
-    <section id="main">
-      {false ? <TaskListContainer /> : <UserListContainer />}
+    <section id="dataContainer">
+      {props.taskView ? <TaskListContainer /> : <UserListContainer />}
     </section>
   </div>
 );

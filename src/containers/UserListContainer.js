@@ -12,6 +12,7 @@ import UserListView from '../components/UserListView';
 const UserListContainer = (props) => (
         <UserListView
           tasks={props.tasks}
+          users={props.users}
           createTask={props.createTask}
           deleteTask={props.deleteTask}
           createNewTask={props.createNewTask}
@@ -31,6 +32,7 @@ const UserListContainer = (props) => (
 function mapStateToProps(state) {
   return {
     tasks: state.tasks,
+    users: state.users,
     createNewTask: state.createNewTask,
     filterWhos: state.filterWhos,
     filterType: state.filterType,

@@ -262,6 +262,7 @@ export function getTasks(filterByType = "all", filterBy = "1", whose = "mine", t
     })
     .then(response => {
       dispatch(loading());
+      // console.log("response status: ", response.status, response.status !== 200)
       if(response.status !== 200) throw response;
       return response.json()
     })
@@ -273,6 +274,35 @@ export function getTasks(filterByType = "all", filterBy = "1", whose = "mine", t
     })
     .catch(() => {
       dispatch(badResponse("Problem fetching tasks"));
+    })
+  }
+}
+
+export function getUsers(token) {
+  return function(dispatch) {
+    dispatch(loading());
+    fetch(url.concat('users'), {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      dispatch(loading());
+      // console.log("response status: ", response.status, response.status !== 200)
+      if(response.status !== 200) throw response;
+      return response.json()
+    })
+    .then(response => {
+      dispatch({
+        type: types.UPDATE_USERS,
+        users: response
+      })
+    })
+    .catch(() => {
+      dispatch(badResponse("Problem fetching users"));
     })
   }
 }

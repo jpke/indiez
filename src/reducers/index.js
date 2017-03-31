@@ -140,6 +140,11 @@ import * as types from '../constants/actionTypes';
         ...state,
         tasks: action.tasks
       };
+     case types.UPDATE_USERS:
+      return {
+        ...state,
+        users: action.users
+      };
      case types.NEW_PROFILE_PIC:
       cache = JSON.parse(JSON.stringify(action.newProfilePic));
       return {

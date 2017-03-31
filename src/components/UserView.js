@@ -2,13 +2,15 @@ import React from 'react';
 import {url} from '../constants/actionTypes'
 
 //creates card for task
-const UserView = (props) => (
-  <div className="itemSpacer">
-    <div className="itemContainer" key={props.id}>
-      <h3>{props.name}</h3>
+const UserView = ({user, index}) => (
+  <div className="itemSpacer" key={index}>
+    <div className="itemContainer" key={user._id}>
+      <h3>{user.name}</h3>
       <section className="listProfileImage">
-        {task.createdBy.profilePicSet &&
-            <img className="profileImage" src={url + "profileImage/" + task.createdBy._id}/>
+        {user.profilePicSet ?
+          <img className="profileImage" src={url + "profileImage/" + user._id}/>
+          :
+          <img className="profileImage" src={url + "profileImage/" + "profilePicNotSet.jpg"} />
         }
       </section>
     </div>

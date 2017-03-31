@@ -4,18 +4,22 @@ import {url} from '../constants/actionTypes'
 
 
 const UserListView = (props) => (
-  <div id="UserListContainer">
-    {
-      props.users.map((user, index) => {
-        return <UserView
-                name={user.name}
-                id={user._id}
-                getTasks={props.getTasks}
-                token={props.token}
-                />
-      })
-    }
-  </div>
+  <section className="contentContainer">
+    <h2>Users</h2>
+    <div id="userListContainer">
+      {
+        props.users.map((user, index) => {
+          return <UserView
+                  index={index}
+                  user={user}
+
+                  getTasks={props.getTasks}
+                  token={props.token}
+                  />
+        })
+      }
+    </div>
+  </section>
 );
 
 export default UserListView;

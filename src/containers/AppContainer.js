@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getTasks,
+        getUsers,
         badResponse,
         deleteTask,
         createTask,
@@ -32,8 +33,13 @@ class AppContainer extends Component {
       this.props.clearErrorMessage();
     }
     if(newProps.token && !this.props.token) {
-      this.props.getTasks("all", "1", "mine", newProps.token);
+      this.loadTasksAndUsers(newProps.token);
     }
+  }
+
+  loadTasksAndUsers(token) {
+    this.props.getTasks("all", "1", "mine", token);
+    this.props.getUsers(token);
   }
 
   uploadProfilePic() {
@@ -94,6 +100,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getTasks: (createdOrEnd, value, whose, token) => dispatch(getTasks(createdOrEnd, value, whose, token)),
+    getUsers: (token) => dispatch(getUsers(token)),
     clearErrorMessage: () => dispatch(badResponse("")),
     deleteTask: (taskID, token) => dispatch(deleteTask(taskID, token)),
     createTask: (ID, token) => dispatch(createTask(ID, token)),
