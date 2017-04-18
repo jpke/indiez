@@ -1,0 +1,46 @@
+exports[`test renders correctly 1`] = `
+<div
+  id="newTaskForm">
+  <h2>
+    Create New Task
+  </h2>
+  <form
+    onSubmit={[Function]}>
+    <label>
+      Task Name
+    </label>
+    <input
+      defaultValue="task name"
+      name="name"
+      onChange={[Function]}
+      type="text" />
+    <label>
+      End Date
+    </label>
+    <input
+      defaultValue="2017-04-19"
+      name="endDate"
+      onChange={[Function]}
+      type="date" />
+    <label>
+      Description
+    </label>
+    <textarea
+      defaultValue="task description"
+      name="description"
+      onChange={[Function]}
+      type="text" />
+    <section
+      className="taskButtons">
+      <button
+        onClick={[Function]}>
+        Cancel
+      </button>
+      <button
+        type="submit">
+        Create
+      </button>
+    </section>
+  </form>
+</div>
+`;

@@ -1,0 +1,61 @@
+exports[`test renders correctly 1`] = `
+<div
+  id="taskListContainer">
+  <section
+    id="filterContainer">
+    <div
+      id="filter">
+      <select
+        name="selectFilter"
+        onChange={[Function]}>
+        <option
+          value="mine">
+          My Tasks
+        </option>
+        <option
+          value="everyone">
+          All Tasks
+        </option>
+      </select>
+      <select
+        name="selectFilter"
+        onChange={[Function]}>
+        <option
+          value="all">
+          All
+        </option>
+        <option
+          value="end">
+          End Before
+        </option>
+        <option
+          value="created">
+          Created After
+        </option>
+      </select>
+      <input
+        defaultValue=""
+        id="filterByDate"
+        name="filterByDate"
+        onChange={[Function]}
+        placeholder="yyyy-mm-dd"
+        type="date" />
+    </div>
+    <button
+      onClick={[Function]}>
+      Filter Tasks
+    </button>
+    <button
+      id="createOrEditButton"
+      onClick={[Function]}>
+      Create Task
+    </button>
+  </section>
+  <section
+    id="tasks">
+    <p>
+      No Tasks Listed
+    </p>
+  </section>
+</div>
+`;

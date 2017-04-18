@@ -1,0 +1,50 @@
+exports[`test renders correctly 1`] = `
+<div
+  className="authContainer">
+  <div
+    className="authFormContainer">
+    <h2>
+      Welcome
+    </h2>
+    <h4>
+      You must register or 
+    </h4>
+    <button
+      className="toggleLogin"
+      onClick={[Function]}>
+      Login
+    </button>
+    <div
+      className="registerContainer">
+      <h3
+        className="title">
+        Register
+      </h3>
+      <form
+        id="authForm"
+        onSubmit={[Function]}>
+        <input
+          className="auth"
+          id="userName"
+          placeholder="name"
+          type="text" />
+        <input
+          className="auth"
+          id="email"
+          placeholder="email"
+          type="email" />
+        <input
+          className="auth"
+          id="password"
+          placeholder="password"
+          type="password" />
+        <button
+          className="authButton"
+          type="submit">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
