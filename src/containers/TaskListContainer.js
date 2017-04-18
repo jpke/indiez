@@ -5,6 +5,7 @@ import {getTasks,
         createTask,
         editFilterBy,
         toggleTaskUser,
+        sortList
       } from '../actions/taskActions';
 import TaskListView from '../components/TaskListView';
 
@@ -21,6 +22,7 @@ const TaskListContainer = (props) => (
           editFilterBy={props.editFilterBy}
           getTasks={props.getTasks}
           token={props.token}
+          sortList={props.sortList}
         />
 );
 
@@ -42,7 +44,8 @@ function mapDispatchToProps(dispatch) {
     deleteTask: (taskID, token) => dispatch(deleteTask(taskID, token)),
     createTask: (ID, token) => dispatch(createTask(ID, token)),
     editFilterBy: (filterWhos, filterType, date) => dispatch(editFilterBy(filterWhos, filterType, date)),
-    toggleTaskUser: () => dispatch(toggleTaskUser())
+    toggleTaskUser: () => dispatch(toggleTaskUser()),
+    sortList: (sortBy) => dispatch(sortList(sortBy))
   }
 }
 
