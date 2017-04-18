@@ -15,11 +15,15 @@ class AuthContainer extends Component {
   toggleView() {
     this.props.actions.toggleView();
   }
+
+  //register new user
   register(event) {
     event.preventDefault();
     const form = event.target.elements;
     this.props.actions.register(form.userName.value, form.email.value, form.password.value);
   }
+
+  //login user
   logIn(event) {
     event.preventDefault();
     const form = event.target.elements;

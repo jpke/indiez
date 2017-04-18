@@ -8,7 +8,7 @@ import {getTasks,
       } from '../actions/taskActions';
 import TaskListView from '../components/TaskListView';
 
-//container for AppView, recieves child components from react router
+//container for TaskListContainer
 const TaskListContainer = (props) => (
         <TaskListView
           tasks={props.tasks}
@@ -21,10 +21,6 @@ const TaskListContainer = (props) => (
           editFilterBy={props.editFilterBy}
           getTasks={props.getTasks}
           token={props.token}
-          userName={props.userName}
-          userId={props.userId}
-          toggleTaskUser={props.toggleTaskUser}
-          taskView={props.taskView}
         />
 );
 
@@ -35,10 +31,7 @@ function mapStateToProps(state) {
     filterWhos: state.filterWhos,
     filterType: state.filterType,
     filterBy: state.filterBy,
-    token: state.token,
-    userName: state.userName,
-    userId: state.userId,
-    taskView: state.taskView
+    token: state.token
 
   }
 }

@@ -3,9 +3,6 @@ import {connect} from 'react-redux';
 import {getTasks,
         getUsers,
         badResponse,
-        deleteTask,
-        createTask,
-        editFilterBy,
         logOut,
         newProfilePic,
         uploadProfileImage,
@@ -51,16 +48,6 @@ class AppContainer extends Component {
     return (
       this.props.token ?
         <AppView
-          tasks={this.props.tasks}
-          createTask={this.props.createTask}
-          deleteTask={this.props.deleteTask}
-          createNewTask={this.props.createNewTask}
-          filterWhos={this.props.filterWhos}
-          filterType={this.props.filterType}
-          filterBy={this.props.filterBy}
-          editFilterBy={this.props.editFilterBy}
-          getTasks={this.props.getTasks}
-          token={this.props.token}
           userName={this.props.userName}
           logOut={this.props.logOut}
           userId={this.props.userId}
@@ -80,8 +67,6 @@ class AppContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    tasks: state.tasks,
-    createNewTask: state.createNewTask,
     errorMessage: state.errorMessage,
     loading: state.loading,
     filterWhos: state.filterWhos,
@@ -102,9 +87,6 @@ function mapDispatchToProps(dispatch) {
     getTasks: (createdOrEnd, value, whose, token) => dispatch(getTasks(createdOrEnd, value, whose, token)),
     getUsers: (token) => dispatch(getUsers(token)),
     clearErrorMessage: () => dispatch(badResponse("")),
-    deleteTask: (taskID, token) => dispatch(deleteTask(taskID, token)),
-    createTask: (ID, token) => dispatch(createTask(ID, token)),
-    editFilterBy: (filterWhos, filterType, date) => dispatch(editFilterBy(filterWhos, filterType, date)),
     logOut: () => dispatch(logOut()),
     newProfilePic: (file) => dispatch(newProfilePic(file)),
     uploadProfileImage: (file, token) => dispatch(uploadProfileImage(file, token)),

@@ -5,7 +5,7 @@ import {url} from '../constants/actionTypes'
 
 //view component, receives props from AppContainer
 //returns background app view nav and header
-//calls child components passed in as props
+//calls task list or user list, depending on props.taskView value
 const AppView = (props) => (
   <div id="main">
     <section id="top">

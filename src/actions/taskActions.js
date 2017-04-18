@@ -22,6 +22,7 @@ export function toggleView() {
   }
 }
 
+//toggle between task list and user list
 export function toggleTaskUser() {
   return {
     type: types.TOGGLE_TASK_USER_VIEW
@@ -192,9 +193,14 @@ export function deleteTask(taskID, token) {
   }
 }
 
-export function submitTask(task, userId, token) {
+export function submitTask(task, userId, userName, profilePicSet, token) {
+  console.log("token: ", token);
   let newTask = JSON.parse(JSON.stringify(task));
-  newTask.createdBy = userId;
+  newTask.createdBy = {
+    _id: userId,
+    name: userName,
+    profilePicSet: profilePicSet
+  };
   return function(dispatch) {
     dispatch(loading());
     if(!newTask._id){

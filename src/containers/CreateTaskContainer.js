@@ -6,8 +6,9 @@ import CreateTaskView from '../components/CreateTaskView';
 //Container for CreateTaskView
 export const CreateTaskContainer = (props) => {
 
-  const createTask = () => {
-    props.submitTask(props.newTask, props.userId, props.token)
+  const submitTask = () => {
+    console.log("token in container: ", props.token);
+    props.submitTask(props.newTask, props.userId, props.userName, props.profilePicSet, props.token)
   }
 
   const formatDate = (date) => {
@@ -25,7 +26,7 @@ export const CreateTaskContainer = (props) => {
   return (
       <CreateTaskView
         updateNewTask={props.updateNewTask}
-        createTask={createTask}
+        submitTask={submitTask}
         newTask={props.newTask}
         endDate={formatDate(props.newTask.end)}
         cancelCreateTask={props.cancelCreateTask}
@@ -41,14 +42,15 @@ function mapStateToProps(state) {
       newTask: state.newTask,
       token: state.token,
       userId: state.userId,
-      userName: state.userName
+      userName: state.userName,
+      profilePicSet: state.profilePicSet
     }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     updateNewTask: (key, value) => dispatch(updateNewTask(key, value)),
-    submitTask: (newTask, userId, token) => dispatch(submitTask(newTask, userId, token)),
+    submitTask: (newTask, userId, userName, profilePicSet, token) => dispatch(submitTask(newTask, userId, userName, profilePicSet, token)),
     cancelCreateTask: () => dispatch(createTask())
   };
 }

@@ -6,7 +6,7 @@ const CreateTaskView = (props) => (
     <h2>{props.newTask._id ? "Edit Task" : "Create New Task"}</h2>
     <form onSubmit={(e) => {
         e.preventDefault();
-        props.createTask()
+        props.submitTask()
         props.cancelCreateTask()}}>
       <label>Task Name</label>
       <input type="text" name="name" defaultValue={props.newTask.name} onChange={(e) => {props.updateNewTask(e.target.name, e.target.value)}} />
